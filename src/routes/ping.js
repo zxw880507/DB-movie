@@ -1,8 +1,8 @@
 const router = require("express").Router();
 
-module.exports = (api_key) => {
+module.exports = (api_key = null) => {
   router.get("/", (req, res) => {
-    res.status(200).json({ success: true, key: api_key || null });
+    res.status(200).json({ success: true, key: api_key });
   });
   return router;
 };
