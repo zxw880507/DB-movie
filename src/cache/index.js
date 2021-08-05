@@ -4,7 +4,7 @@ const myCache = new NodeCache();
 
 module.exports = {
   get(key) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       const response = {};
       response.data = myCache.get(key);
       resolve(response);
@@ -14,7 +14,6 @@ module.exports = {
   set(key, value, ttl) {
     return new Promise((resolve, reject) => {
       const success = myCache.set(key, value, ttl);
-      console.log("success:", success);
       if (success) {
         const res = { msg: "Cache stored successfully!" };
         resolve(res);

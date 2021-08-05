@@ -10,4 +10,9 @@ module.exports = {
     }
     return arr.join("&");
   },
+  generateCacheKey(query) {
+    const { sortBy, direction, page } = query;
+    const arr = [sortBy, direction, page];
+    return arr.join("&");
+  },
 };
