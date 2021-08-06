@@ -7,7 +7,8 @@ import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({
   container: {
-    alignItems: "center"
+    alignItems: "center",
+    backgroundColor: "rgba(13, 37, 63)",
   },
 });
 export default function HideOnScroll(props) {
