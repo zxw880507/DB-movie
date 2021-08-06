@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0, 2),
     height: "100%",
     position: "absolute",
+    color: "rgb(1, 180, 228)",
     pointerEvents: "none",
     display: "flex",
     alignItems: "center",
