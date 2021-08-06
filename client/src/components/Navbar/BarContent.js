@@ -1,8 +1,9 @@
 import React from "react";
-import { Toolbar, Typography, Grid } from "@material-ui/core";
+import { Toolbar, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import logo from "../../image/movie_logo.svg";
 import Search from "./Search";
+import IconButtonList from "./IconButtonList";
 
 const useStyles = makeStyles({
   container: {
@@ -28,6 +29,7 @@ export default function BarContent() {
         direction="row"
         justifyContent="center"
         alignItems="center"
+        wrap="nowrap"
       >
         <div className={classes.logo}>
           <img src={logo} alt="logo" />
@@ -38,10 +40,11 @@ export default function BarContent() {
           direction="row"
           justifyContent="space-between"
           alignItems="center"
+          wrap="nowrap"
           className={classes.right}
         >
           <Search />
-          <Typography variant="h6">Scroll to Hide App Bar</Typography>
+          <IconButtonList />
         </Grid>
       </Grid>
     </Toolbar>
