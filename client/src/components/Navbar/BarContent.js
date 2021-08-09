@@ -7,6 +7,7 @@ import IconButtonList from "./IconButtonList";
 
 const useStyles = makeStyles({
   container: {
+    minWidth: 960,
     flexDirection: "row",
     padding: 0,
   },
