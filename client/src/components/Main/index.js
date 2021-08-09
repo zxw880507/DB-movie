@@ -4,6 +4,7 @@ import Header from "./Header";
 
 const useStyles = makeStyles({
   root: {
+    minWidth: 960,
     padding: 0,
   },
 });
