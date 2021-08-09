@@ -8,7 +8,6 @@ import IconButtonList from "./IconButtonList";
 const useStyles = makeStyles({
   container: {
     flexDirection: "row",
-    width: "70%",
     padding: 0,
   },
   logo: {
@@ -32,7 +31,7 @@ export default function BarContent() {
         wrap="nowrap"
       >
         <div className={classes.logo}>
-          <img src={logo} alt="logo" />
+          <img src={logo} alt="logo"/>
         </div>
 
         <Grid
