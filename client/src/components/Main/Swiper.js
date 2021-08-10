@@ -2,17 +2,19 @@ import React, { useRef, useState } from "react";
 import data from "./data.json";
 
 export default function Swiper() {
-  // const overflow = useRef(null);
+  const overflow = useRef(null);
   const barContainer = useRef(null);
   const [PosisionX, setPositionX] = useState(0);
-  console.log("PosisionX:", PosisionX);
+  const [overflowX, setOverflowX] = useState(0);
+  // console.log("PosisionX:", PosisionX);
+  // console.log(overflow.current.parentNode);
   return (
     <>
       <div
         style={{
           overflow: "hidden",
           position: "relative",
-          width: 1280,
+          width: "100%",
           height: 751,
         }}
       >
@@ -21,9 +23,9 @@ export default function Swiper() {
             display: "flex",
             position: "absolute",
             top: 0,
-            left: 0,
+            left: overflowX,
           }}
-          // ref={overflow}
+          ref={overflow}
         >
           {data.map((source, index) => (
             <img
@@ -56,6 +58,12 @@ export default function Swiper() {
             const x = e.pageX - outerX - e.target.offsetLeft;
             const maxPos =
               barContainer.current.offsetWidth - e.target.offsetWidth;
+            //get overflow accessible moving distance
+            const overflowDist =
+              overflow.current.offsetWidth -
+              overflow.current.parentNode.offsetWidth;
+            
+
             const move = (e) => {
               let newPositionX = e.pageX - outerX - x;
               if (newPositionX > maxPos) {
@@ -64,7 +72,9 @@ export default function Swiper() {
               if (newPositionX < 0) {
                 newPositionX = 0;
               }
+              let overflowX = - newPositionX * overflowDist / maxPos;
               setPositionX(newPositionX);
+              setOverflowX(overflowX);
             };
             document.addEventListener("mousemove", move);
             document.addEventListener("mouseup", () => {
