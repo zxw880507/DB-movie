@@ -16,6 +16,7 @@ export default function Main() {
       <Toolbar />
       <Header />
       <Swiper />
+      <div style={{ height: 1000 }} />
     </Container>
   );
 }
