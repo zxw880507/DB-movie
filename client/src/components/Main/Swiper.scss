@@ -9,10 +9,12 @@
         top: 0;
         left: 0;
         .overflow-img-box {
-            margin-left: 20px;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+            &:nth-child(n + 2) {
+                margin-left: 20px;
+            }
             .overflow-img {
                 width: 150px;
                 height: 225px;
@@ -23,14 +25,15 @@
 
 .scrollbar-container {
     position: relative;
-    height: 20px;
-    background-color: rgba(0, 0, 0, 0.2);
+    height: 10px;
+    background-color: transparent;
     .scrollbar {
         position: absolute;
         top: 0;
         left: 0;
-        width: 20%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.8);
+        border-radius: 10px;
+        box-shadow: 1px 1px 5px rgba(80, 80, 80, 0.3);
+        background-color: rgba(0, 0, 0, 0.3);
     }
 }
