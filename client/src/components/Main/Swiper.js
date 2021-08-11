@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import data from "./data.json";
 import "./Swiper.css";
 
@@ -7,9 +7,20 @@ export default function Swiper() {
   const barContainer = useRef(null);
   const [PosisionX, setPositionX] = useState(0);
   const [overflowX, setOverflowX] = useState(0);
+  const [barwidth, setBarwidth] = useState(undefined);
 
+  useEffect(() => {
+    let width =
+      (overflow.current.parentNode.offsetWidth *
+        barContainer.current.offsetWidth) /
+      overflow.current.offsetWidth;
+    setBarwidth(width);
+  }, [data]);
   return (
     <>
+      <div>
+        <h5>What's Popular</h5>
+      </div>
       <div className="overflow-container">
         <div
           className="overflow-box"
@@ -31,6 +42,7 @@ export default function Swiper() {
         <span
           className="scrollbar"
           style={{
+            width: barwidth,
             left: PosisionX,
           }}
           onMouseDown={(e) => {
