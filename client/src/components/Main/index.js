@@ -15,8 +15,8 @@ export default function Main() {
     <Container maxWidth="lg" className={classes.root}>
       <Toolbar />
       <Header />
+      <div style={{ height: 20 }} />
       <Swiper />
-      <div style={{ height: 1000 }} />
     </Container>
   );
 }
