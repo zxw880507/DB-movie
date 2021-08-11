@@ -18,8 +18,16 @@ export default function Swiper() {
   }, [data]);
   return (
     <>
-      <div>
-        <h5>What's Popular</h5>
+      <div className="tab-container">
+        <h4 className="tab-container-title">What's Popular</h4>
+        <ul className="tab-list">
+          <li className="tab-selected">
+            <p>Movies</p>
+          </li>
+          <li>
+            <p>TV</p>
+          </li>
+        </ul>
       </div>
       <div className="overflow-container">
         <div
