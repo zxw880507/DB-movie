@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import TabItemList from "./TabItemList";
 import data from "./data.json";
 import "./Swiper.css";
 
@@ -18,17 +19,7 @@ export default function Swiper() {
   }, [data]);
   return (
     <>
-      <div className="tab-container">
-        <h4 className="tab-container-title">What's Popular</h4>
-        <ul className="tab-list">
-          <li className="tab-selected">
-            <p>Movies</p>
-          </li>
-          <li>
-            <p>TV</p>
-          </li>
-        </ul>
-      </div>
+      <TabItemList />
       <div className="overflow-container">
         <div
           className="overflow-box"
