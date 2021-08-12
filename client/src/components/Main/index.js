@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, makeStyles, Toolbar } from "@material-ui/core";
 import Header from "./Header";
-import Swiper from "./Swiper";
+import SwiperList from "./SwiperList";
 
 const useStyles = makeStyles({
   root: {
@@ -15,8 +15,7 @@ export default function Main() {
     <Container maxWidth="lg" className={classes.root}>
       <Toolbar />
       <Header />
-      <div style={{ height: 20 }} />
-      <Swiper />
+      <SwiperList />
     </Container>
   );
 }
