@@ -9,12 +9,10 @@
         top: 0;
         left: 0;
         .overflow-img-box {
+            margin-left: 20px;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-            &:nth-child(n + 2) {
-                margin-left: 20px;
-            }
             .overflow-img {
                 width: 150px;
                 height: 225px;
@@ -46,7 +44,8 @@
     margin-bottom: 1em;
     .tab-container-title {
         margin: 0 1em;
-        font-family: "Anton", sans-serif;
+        font-weight: 500;
+        font-family: "Source Sans Pro", Arial, sans-serif;
     }
     .tab-list {
         box-sizing: border-box;
@@ -60,7 +59,7 @@
         border-radius: 1em;
         border: 1px solid rgba(13, 37, 63, 1);
         overflow: hidden;
-        li {
+        .tab-item {
             display: flex;
             box-sizing: content-box;
             justify-content: center;
@@ -70,19 +69,20 @@
             border-radius: 1em;
             p {
                 margin: 0;
-                font-family: "Abril Fatface", sans-serif;
+                font-weight: 500;
+                font-family: "Source Sans Pro", Arial, sans-serif;
             }
             &:hover {
                 cursor: pointer;
             }
         }
-        .tab-selected {
+        .tab-item-selected {
             background-color: rgba(13, 37, 63, 1);
             p {
                 background: linear-gradient(45deg, #e5ffec, #52f3ff);
                 background-clip: text;
                 -webkit-text-fill-color: transparent;
-                text-shadow: 1px 1px 5px rgba(255, 255, 255, .2);
+                text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.2);
             }
         }
     }
