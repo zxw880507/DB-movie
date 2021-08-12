@@ -2,8 +2,8 @@ import React, { useRef, useState, useEffect } from "react";
 import TabItemList from "./TabItemList";
 import data from "./data.json";
 import "./Swiper.css";
-const tabs = { title: "What's Popular", types: ["Movie", "TV"] };
-export default function Swiper() {
+export default function Swiper(props) {
+  const { tab } = props;
   const overflow = useRef(null);
   const barContainer = useRef(null);
   const [PosisionX, setPositionX] = useState(0);
@@ -18,8 +18,8 @@ export default function Swiper() {
     setBarwidth(width);
   }, [data]);
   return (
-    <div>
-      <TabItemList tabs={tabs} />
+    <div className="swiper-item-container">
+      <TabItemList tab={tab} />
       <div className="overflow-container">
         <div
           className="overflow-box"
