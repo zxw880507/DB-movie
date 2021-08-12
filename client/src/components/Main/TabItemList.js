@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import TabItem from "./TabItem";
 
-const type = ["Movie", "TV"];
-
-export default function TabItemList() {
-  const [selectedType, setSelectedType] = useState(type[0]);
+export default function TabItemList(props) {
+  const { tabs } = props;
+  const [selectedType, setSelectedType] = useState(tabs.types[0]);
   return (
     <div className="tab-container">
-      <h4 className="tab-container-title">What's Popular</h4>
+      <h4 className="tab-container-title">{tabs.title}</h4>
       <ul className="tab-list">
-        {type.map((el, index) => (
+        {tabs.types.map((el, index) => (
           <TabItem
             key={index}
             selected={selectedType === el}

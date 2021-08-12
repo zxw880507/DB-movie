@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import TabItemList from "./TabItemList";
 import data from "./data.json";
 import "./Swiper.css";
-
+const tabs = { title: "What's Popular", types: ["Movie", "TV"] };
 export default function Swiper() {
   const overflow = useRef(null);
   const barContainer = useRef(null);
@@ -18,8 +18,8 @@ export default function Swiper() {
     setBarwidth(width);
   }, [data]);
   return (
-    <>
-      <TabItemList />
+    <div>
+      <TabItemList tabs={tabs} />
       <div className="overflow-container">
         <div
           className="overflow-box"
@@ -27,12 +27,18 @@ export default function Swiper() {
           ref={overflow}
         >
           {data.map((source, index) => (
-            <div key={index} className="overflow-img-box">
-              <img
-                src={`https://image.tmdb.org/t/p/w500${source.poster_path}`}
-                alt=""
-                className="overflow-img"
-              />
+            <div className="overflow-item-container">
+              <div key={index} className="overflow-img-box">
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${source.poster_path}`}
+                  alt=""
+                  className="overflow-img"
+                />
+              </div>
+              <div className="overflow-item-title-box">
+                <p className="overflow-item-title">{source.title}</p>
+                <p className="overflow-item-release">{source.release_date}</p>
+              </div>
             </div>
           ))}
         </div>
@@ -73,6 +79,6 @@ export default function Swiper() {
           }}
         />
       </div>
-    </>
+    </div>
   );
 }
