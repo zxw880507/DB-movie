@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
 import Swiper from "./Swiper";
+import { getTags } from "../../helpers";
 const tabs = [
   {
     title: "What's Popular",
@@ -31,7 +32,7 @@ export default function SwpiperList() {
       alignItems="center"
     >
       {tabs.map((tab, index) => (
-        <Swiper key={index} tab={tab} />
+        <Swiper key={index} tab={getTags(tab)} />
       ))}
     </Grid>
   );
