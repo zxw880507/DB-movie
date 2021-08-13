@@ -29,8 +29,12 @@ export default function Swiper(props) {
                   />
                 </div>
                 <div className="overflow-item-title-box">
-                  <p className="overflow-item-title">{source.title}</p>
-                  <p className="overflow-item-release">{source.release_date}</p>
+                  <p className="overflow-item-title">
+                    {source.title || source.name}
+                  </p>
+                  <p className="overflow-item-release">
+                    {source.release_date || source.first_air_date}
+                  </p>
                 </div>
               </div>
             ))}
