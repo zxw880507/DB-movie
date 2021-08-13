@@ -13,52 +13,15 @@ DB-MOVIE is an single page app for Movie/TV browsing and help users to discover 
 - [x] node-cache
 - [x] axios
 
-The back-end repo was built using Node.js and Express with third party(TMDB) API integration.
+The back-end repo was built using Node.js and Express with third party(TMDB) API integration. Also the API request performance is optimized by caching for storing and retrieving response data.
 &nbsp;
 &nbsp;
-
-
 
 ## Final Product
 
 ### Home page
 
-
-
-### Gigs page
-
-
-
-### Individual Gig details
-
-
-
-### Live messaging between clients and contractors (Socket IO Implementation)
-
-
-### Placing a booking
-
-!["Placing a booking"](https://github.com/shadeemerhi/simplifix/blob/master/docs/booking.gif)
-
-### Booking confirmation (left is Client, right is Contractor, Socket IO Implementation)
-
-!["Booking confirmation"](https://github.com/shadeemerhi/simplifix/blob/master/docs/bookingconfirm.gif)
-
-### After the Gig completion, the Contractor can specify hours (left is Client, right is Contractor)
-
-!["Specifying hours worked"](https://github.com/shadeemerhi/simplifix/blob/master/docs/hours.gif)
-
-### Payments with Stripe
-
-!["Payments with Stripe"](https://github.com/shadeemerhi/simplifix/blob/master/docs/payment.gif)
-
-### Order history after payment has been received
-
-!["Order history after payment has been received"](https://github.com/shadeemerhi/simplifix/blob/master/docs/paymentdone.png)
-
-### New Gig form
-
-!["Creating a new Gig"](https://github.com/shadeemerhi/simplifix/blob/master/docs/newgig.png)
+!["Home"](client/docs/screenshot_home_page.png)
 
 ## Dependencies
 
@@ -69,21 +32,9 @@ The back-end repo was built using Node.js and Express with third party(TMDB) API
 - bootstrap
 - node-cache
 
-## Stripe cards
-
-Payment succeeds: 4242 4242 4242 4242
-
-Payment requires authentication: 4000 0025 0000 3155
-
-Payment is declined: 4000 0000 0000 9995
-
-## Cypress testing
-
-command: ./node_modules/.bin/cypress open
-
 ## Available Scripts
 
-In the project directory, you can run:
+In the Front-end directory (DB-MOVIE/client), you can run:
 
 ### `npm start`
 
@@ -93,7 +44,15 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-### `npm test`
+In the Back-end directory (DB-MOVIE/server), you can run:
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `npm start`
+
+Runs the server in the development mode.
+Call (http://localhost:8000) followed by listed routes to fetch data in the browser.
+
+|        Routes         | Method |            params            | Response body               |
+| :-------------------: | :----: | :--------------------------: | --------------------------- |
+|       /api/ping       |  get   |             N/A              | success message             |
+| /api/movie/`<params>` |  get   |  popular/top_rated/upcoming  | sorted data / error message |
+|  /api/tv/`<params>`   |  get   | popular/top_rated/on_the_air | sorted data / error message |
