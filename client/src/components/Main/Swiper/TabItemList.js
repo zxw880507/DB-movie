@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TabItem from "./TabItem";
 
 export default function TabItemList(props) {
-  const { title, type, keyword, sortByType } = props.tab;
-  const tags = sortByType ? type : keyword;
-  const [selectedTag, setSelectedTag] = useState(tags[0]);
+  const { tab, selectedTag, onChange } = props;
+  const { title, tags } = tab;
+
   return (
     <div className="tab-container">
       <h4 className="tab-container-title">{title}</h4>
@@ -14,7 +14,7 @@ export default function TabItemList(props) {
             key={index}
             selected={selectedTag === el}
             value={el}
-            setSelectedTag={setSelectedTag}
+            onChange={onChange}
           />
         ))}
       </ul>
