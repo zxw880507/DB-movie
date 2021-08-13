@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
 import TabItemList from "./TabItemList";
-import data from "./data.json";
 import useSwiper from "../../../hooks/useSwiper";
 import "./Swiper.css";
 export default function Swiper(props) {
@@ -10,39 +9,45 @@ export default function Swiper(props) {
   const [PosisionX, setPositionX] = useState(0);
   const [overflowX, setOverflowX] = useState(0);
   const [barwidth, setBarwidth] = useState(undefined);
-  const state = useSwiper(tab);
-  console.log(state);
+
+  const { state, selectedTag, setSelectTag, data, setData } = useSwiper(tab);
+  // console.log(data);
+  // console.log(state);
+  const onChange = (tag) => {
+    setSelectTag(tag);
+  };
   useEffect(() => {
     let width =
       (overflow.current.parentNode.offsetWidth *
         barContainer.current.offsetWidth) /
       overflow.current.offsetWidth;
     setBarwidth(width);
-  }, []);
+  }, [data]);
   return (
     <div className="swiper-item-container">
-      <TabItemList tab={tab} />
+      <TabItemList tab={tab} selectedTag={selectedTag} onChange={onChange} />
       <div className="overflow-container">
         <div
           className="overflow-box"
           style={{ left: overflowX }}
           ref={overflow}
         >
-          {data.map((source, index) => (
-            <div className="overflow-item-container" key={index}>
-              <div className="overflow-img-box">
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${source.poster_path}`}
-                  alt=""
-                  className="overflow-img"
-                />
+          {data &&
+            data.map((source, index) => (
+              <div className="overflow-item-container" key={index}>
+                <div className="overflow-img-box">
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${source.poster_path}`}
+                    alt=""
+                    className="overflow-img"
+                  />
+                </div>
+                <div className="overflow-item-title-box">
+                  <p className="overflow-item-title">{source.title}</p>
+                  <p className="overflow-item-release">{source.release_date}</p>
+                </div>
               </div>
-              <div className="overflow-item-title-box">
-                <p className="overflow-item-title">{source.title}</p>
-                <p className="overflow-item-release">{source.release_date}</p>
-              </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
       <div className="scrollbar-container" ref={barContainer}>

@@ -2,17 +2,14 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function useSwiper(tab) {
-  // const init = tags.reduce((a, b) => ({ ...a, [b]: null }), {});
-  const [state, setState] = useState(null);
-
-  
+  const init = tab.tags.reduce((a, b) => ({ ...a, [b]: null }), {});
+  const [state, setState] = useState(init);
+  const [selectedTag, setSelectTag] = useState(tab.tags[0]);
+  const [data, setData] = useState(undefined);
 
   useEffect(() => {
     console.log("effect ----------------------");
-    const { type, keyword, sortByType } = tab;
-    const tags = (sortByType ? type : keyword).map((el) =>
-      el.toLowerCase().replace(/\s/g, "_")
-    );
+    const { type, keyword, sortByType, tags } = tab;
     const promiseArr = tags.map((tag) => {
       const url = sortByType ? `${tag}/${keyword}` : `${type}/${tag}`;
       return axios
@@ -25,5 +22,9 @@ export default function useSwiper(tab) {
     });
   }, [tab]);
 
-  return state;
+  useEffect(() => {
+    setData(state[selectedTag]);
+  }, [selectedTag, state]);
+  
+  return { state, selectedTag, setSelectTag, data, setData };
 }
