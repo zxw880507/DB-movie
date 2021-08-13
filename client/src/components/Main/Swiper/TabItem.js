@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import { tagFormatting } from "../../../helpers";
 
 export default function TabItem(props) {
   const { selected, value, onChange } = props;
@@ -9,7 +10,7 @@ export default function TabItem(props) {
   });
   return (
     <li className={tabSelectedClass} onClick={() => onChange(value)}>
-      <p>{value}</p>
+      <p>{tagFormatting(value)}</p>
     </li>
   );
 }
