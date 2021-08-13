@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import TabItemList from "./TabItemList";
 import data from "./data.json";
+import useSwiper from "../../../hooks/useSwiper";
 import "./Swiper.css";
 export default function Swiper(props) {
   const { tab } = props;
@@ -9,14 +10,15 @@ export default function Swiper(props) {
   const [PosisionX, setPositionX] = useState(0);
   const [overflowX, setOverflowX] = useState(0);
   const [barwidth, setBarwidth] = useState(undefined);
-
+  const state = useSwiper(tab);
+  console.log(state);
   useEffect(() => {
     let width =
       (overflow.current.parentNode.offsetWidth *
         barContainer.current.offsetWidth) /
       overflow.current.offsetWidth;
     setBarwidth(width);
-  }, [data]);
+  }, []);
   return (
     <div className="swiper-item-container">
       <TabItemList tab={tab} />
@@ -27,8 +29,8 @@ export default function Swiper(props) {
           ref={overflow}
         >
           {data.map((source, index) => (
-            <div className="overflow-item-container">
-              <div key={index} className="overflow-img-box">
+            <div className="overflow-item-container" key={index}>
+              <div className="overflow-img-box">
                 <img
                   src={`https://image.tmdb.org/t/p/w500${source.poster_path}`}
                   alt=""
