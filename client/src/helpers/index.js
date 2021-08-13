@@ -15,3 +15,12 @@ export function tagFormatting(tag) {
     .replace(/\w+/g, (x) => x[0].toUpperCase() + x.slice(1))
     .replace(/_/g, " ");
 }
+
+export function shuffle(data, num) {
+  let random = data
+    .map((el) => ({ el, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ el }) => el);
+
+  return random.slice(0, num);
+}

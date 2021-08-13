@@ -2,6 +2,7 @@ import { makeStyles } from "@material-ui/styles";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Carousel } from "react-bootstrap";
+import { shuffle } from "../../helpers";
 
 const useStyles = makeStyles({
   shadeCover: {
@@ -40,9 +41,10 @@ export default function Header() {
   const classes = useStyles();
   const [data, setData] = useState([]);
   useEffect(() => {
-    axios
-      .get(`/api/trending/movie/week`)
-      .then((res) => setData([...res.data.results]));
+    axios.get(`/api/trending/movie/week`).then((res) => {
+      const newData = shuffle([...res.data.results], 8);
+      setData(newData);
+    });
   }, []);
   return (
     <Carousel fade>
