@@ -1,28 +1,14 @@
-import React, { useRef, useState, useEffect } from "react";
+import React from "react";
 import TabItemList from "./TabItemList";
 import useSwiper from "../../../hooks/useSwiper";
+import useScroller from "../../../hooks/useScroller";
 import "./Swiper.css";
 export default function Swiper(props) {
   const { tab } = props;
-  const overflow = useRef(null);
-  const barContainer = useRef(null);
-  const [PosisionX, setPositionX] = useState(0);
-  const [overflowX, setOverflowX] = useState(0);
-  const [barwidth, setBarwidth] = useState(undefined);
 
-  const { state, selectedTag, setSelectTag, data, setData } = useSwiper(tab);
-  // console.log(data);
-  // console.log(state);
-  const onChange = (tag) => {
-    setSelectTag(tag);
-  };
-  useEffect(() => {
-    let width =
-      (overflow.current.parentNode.offsetWidth *
-        barContainer.current.offsetWidth) /
-      overflow.current.offsetWidth;
-    setBarwidth(width);
-  }, [data]);
+  const { selectedTag, data, onChange } = useSwiper(tab);
+  const { dimension, ref, onScroll } = useScroller(data);
+  const { positionX, overflowX, barwidth } = dimension;
   return (
     <div className="swiper-item-container">
       <TabItemList tab={tab} selectedTag={selectedTag} onChange={onChange} />
@@ -30,7 +16,7 @@ export default function Swiper(props) {
         <div
           className="overflow-box"
           style={{ left: overflowX }}
-          ref={overflow}
+          ref={ref.overflow}
         >
           {data &&
             data.map((source, index) => (
@@ -50,40 +36,14 @@ export default function Swiper(props) {
             ))}
         </div>
       </div>
-      <div className="scrollbar-container" ref={barContainer}>
+      <div className="scrollbar-container" ref={ref.barContainer}>
         <span
           className="scrollbar"
           style={{
             width: barwidth,
-            left: PosisionX,
+            left: positionX,
           }}
-          onMouseDown={(e) => {
-            const outerX = barContainer.current.offsetLeft;
-            const x = e.pageX - outerX - e.target.offsetLeft;
-            const maxPos =
-              barContainer.current.offsetWidth - e.target.offsetWidth;
-            //get overflow accessible moving distance
-            const overflowDist =
-              overflow.current.offsetWidth -
-              overflow.current.parentNode.offsetWidth;
-
-            const move = (e) => {
-              let newPositionX = e.pageX - outerX - x;
-              if (newPositionX > maxPos) {
-                newPositionX = maxPos;
-              }
-              if (newPositionX < 0) {
-                newPositionX = 0;
-              }
-              let overflowX = (-newPositionX * overflowDist) / maxPos;
-              setPositionX(newPositionX);
-              setOverflowX(overflowX);
-            };
-            document.addEventListener("mousemove", move);
-            document.addEventListener("mouseup", () => {
-              document.removeEventListener("mousemove", move);
-            });
-          }}
+          onMouseDown={onScroll}
         />
       </div>
     </div>
