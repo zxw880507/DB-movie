@@ -16,20 +16,6 @@ app.use(express.static(join(__dirname, "public")));
 const api = require("./src/routes/index");
 app.use("/api", api);
 
-// app.use("/cache/:username", (request, response) => {
-//   const { username } = request.params;
-//   cache.get("username").then((res) => {
-//     if (res.data) {
-//       console.log(res.data);
-//     } else {
-//       cache
-//         .set("username", username, 60000)
-//         .then((res) => console.log(res))
-//         .catch((err) => console.log(err));
-//     }
-//   });
-// });
-
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
