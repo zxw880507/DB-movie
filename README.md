@@ -17,11 +17,15 @@ The back-end repo was built using Node.js and Express with third party(TMDB) API
 &nbsp;
 &nbsp;
 
-## Final Product
+## Screen Shot
 
-### Home page
+#### Home page part1
 
-!["Home"](client/docs/screenshot_home_page.png)
+!["Home"](client/docs/screenshot_home_page_1.png)
+
+#### Home page part2
+
+!["Home"](client/docs/screenshot_home_page_2.png)
 
 ## Dependencies
 
