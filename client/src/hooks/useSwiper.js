@@ -6,7 +6,9 @@ export default function useSwiper(tab) {
   const [state, setState] = useState(init);
   const [selectedTag, setSelectTag] = useState(tab.tags[0]);
   const [data, setData] = useState(undefined);
-
+  const onChange = (tag) => {
+    setSelectTag(tag);
+  };
   useEffect(() => {
     console.log("effect ----------------------");
     const { type, keyword, sortByType, tags } = tab;
@@ -25,6 +27,6 @@ export default function useSwiper(tab) {
   useEffect(() => {
     setData(state[selectedTag]);
   }, [selectedTag, state]);
-  
-  return { state, selectedTag, setSelectTag, data, setData };
+
+  return { selectedTag, data, onChange };
 }
