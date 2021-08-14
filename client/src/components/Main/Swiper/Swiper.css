@@ -6,7 +6,7 @@
   overflow: hidden;
   position: relative;
   width: 100%;
-  height: 20em;
+  height: 22em;
 }
 .swiper-item-container .overflow-container .overflow-box {
   display: flex;
@@ -34,7 +34,7 @@
 .swiper-item-container .overflow-container .overflow-box .overflow-item-container .overflow-item-title-box p {
   margin: 0;
   font-family: "Source Sans Pro", Arial, sans-serif;
-  line-height: 1em;
+  line-height: 1.2em;
 }
 .swiper-item-container .overflow-container .overflow-box .overflow-item-container .overflow-item-title-box .overflow-item-title {
   font-weight: 600;
