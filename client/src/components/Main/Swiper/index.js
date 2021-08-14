@@ -19,25 +19,28 @@ export default function Swiper(props) {
           ref={ref.overflow}
         >
           {data &&
-            data.map((source, index) => (
-              <div className="overflow-item-container" key={index}>
-                <div className="overflow-img-box">
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500${source.poster_path}`}
-                    alt=""
-                    className="overflow-img"
-                  />
-                </div>
-                <div className="overflow-item-title-box">
-                  <p className="overflow-item-title">
-                    {source.title || source.name}
-                  </p>
-                  <p className="overflow-item-release">
-                    {source.release_date || source.first_air_date}
-                  </p>
-                </div>
-              </div>
-            ))}
+            data.map(
+              (source, index) =>
+                source.poster_path && (
+                  <div className="overflow-item-container" key={index}>
+                    <div className="overflow-img-box">
+                      <img
+                        src={`https://image.tmdb.org/t/p/w500${source.poster_path}`}
+                        alt=""
+                        className="overflow-img"
+                      />
+                    </div>
+                    <div className="overflow-item-title-box">
+                      <p className="overflow-item-title">
+                        {source.title || source.name}
+                      </p>
+                      <p className="overflow-item-release">
+                        {source.release_date || source.first_air_date}
+                      </p>
+                    </div>
+                  </div>
+                )
+            )}
         </div>
       </div>
       <div className="scrollbar-container" ref={ref.barContainer}>
