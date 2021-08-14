@@ -10,10 +10,11 @@ export default function useScroller(data) {
     barwidth: undefined,
   });
   useEffect(() => {
-    let newBarWidth =
-      (overflow.current.parentNode.offsetWidth *
-        barContainer.current.offsetWidth) /
-      overflow.current.offsetWidth;
+    let newBarWidth = overflow.current.offsetWidth
+      ? (overflow.current.parentNode.offsetWidth *
+          barContainer.current.offsetWidth) /
+        overflow.current.offsetWidth
+      : 0;
     setDimension((prev) => ({ ...prev, barwidth: newBarWidth }));
   }, [data]);
 
