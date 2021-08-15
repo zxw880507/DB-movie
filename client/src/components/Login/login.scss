@@ -25,25 +25,25 @@
         background: url("../../image/movie.jpeg") bottom no-repeat;
         background-size: cover;
         box-shadow: 0px 50px 70px rgba(0, 0, 0, 0.3), 0px 10px 10px rgba(0, 0, 0, 0.1);
-        &::after {
-            content: "";
-            background: inherit;
-            width: inherit;
-            height: 60%;
-            position: absolute;
-            bottom: -60%;
-            transform: scaleY(-1);
-            opacity: 0.5;
-        }
-        &::before {
-            content: "";
-            width: inherit;
-            height: 61%;
-            position: absolute;
-            bottom: -61%;
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), white);
-            z-index: 1;
-        }
+        // &::after {
+        //     content: "";
+        //     background: inherit;
+        //     width: inherit;
+        //     height: 60%;
+        //     position: absolute;
+        //     bottom: -60%;
+        //     transform: scaleY(-1);
+        //     opacity: 0.5;
+        // }
+        // &::before {
+        //     content: "";
+        //     width: inherit;
+        //     height: 61%;
+        //     position: absolute;
+        //     bottom: -61%;
+        //     background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), white);
+        //     z-index: 1;
+        // }
         .login-heading-title {
             margin: 0;
             font-size: 3em;
@@ -60,5 +60,39 @@
     .login-content-box {
         flex: 3;
         background-color: transparent;
+        .login-tabs {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 100%;
+            height: 5em;
+            font-family: "Libre Barcode 39 Text", cursive;
+            // overflow: hidden;
+            span {
+                flex: 1;
+                padding-top: 0.1em;
+                height: 100%;
+                font-size: 3em;
+                text-align: center;
+                border-bottom: 2px solid #000;
+                &:first-child {
+                    position: relative;
+                    background-color: #fff;
+                    z-index: 1111;
+                    &::after {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        transform: translateX(100%);
+                        content: "";
+                        // height: 100%;
+                        // width: 1em;
+                        // background-color: pink;
+                        border-bottom: 1.6em solid rgb(255, 255, 255);
+                        border-right: 1em solid transparent;
+                    }
+                }
+            }
+        }
     }
 }
