@@ -7,6 +7,7 @@ import { shuffle } from "../../helpers";
 const useStyles = makeStyles({
   shadeCover: {
     position: "absolute",
+    display: "flex",
     top: 0,
     left: 0,
     width: "100%",
@@ -15,19 +16,19 @@ const useStyles = makeStyles({
   },
   innerContainer: {
     display: "flex",
+    alignSelf: "center",
     alignItems: "center",
     width: "70%",
-    height: "100%",
+    height: "90%",
     margin: "0 auto",
   },
   poster: {
-    width: 250,
-    height: 375,
+    height: "80%",
     borderRadius: 10,
     boxShadow: "1px 1px 10px rgba(0,0,0,1)",
   },
   detailBox: {
-    height: 375,
+    height: "80%",
     paddingLeft: 30,
     color: "#fff",
     fontFamily: "Source Sans Pro', Arial, sans-serif",
@@ -47,7 +48,7 @@ export default function Header() {
     });
   }, []);
   return (
-    <Carousel fade>
+    <Carousel fade interval={null}>
       {data &&
         data.map((movie, index) => (
           <Carousel.Item key={index}>
