@@ -1,6 +1,6 @@
 import React from "react";
+import Form from "./Form";
 import "./login.css";
-
 export default function Login() {
   return (
     <div className="login-container">
@@ -11,7 +11,10 @@ export default function Login() {
       <div className="login-content-box">
         <div className="login-tabs">
           <span>Login</span>
-          <span>Register</span>
+          <span className="register-tab-selected">Register</span>
+        </div>
+        <div className="login-form-container">
+          <Form />
         </div>
       </div>
     </div>
