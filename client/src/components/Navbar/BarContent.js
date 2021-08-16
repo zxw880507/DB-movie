@@ -19,7 +19,7 @@ const useStyles = makeStyles({
     paddingLeft: 25,
   },
 });
-export default function BarContent() {
+export default function BarContent(props) {
   const classes = useStyles();
 
   return (
@@ -32,7 +32,7 @@ export default function BarContent() {
         wrap="nowrap"
       >
         <div className={classes.logo}>
-          <img src={logo} alt="logo"/>
+          <img src={logo} alt="logo" />
         </div>
 
         <Grid
@@ -44,7 +44,7 @@ export default function BarContent() {
           className={classes.right}
         >
           <Search />
-          <IconButtonList />
+          <IconButtonList {...props} />
         </Grid>
       </Grid>
     </Toolbar>

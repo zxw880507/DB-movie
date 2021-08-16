@@ -21,7 +21,7 @@ export default function HideOnScroll(props) {
     <Slide in={!trigger}>
       <AppBar className={classes.container}>
         <Container maxWidth="lg">
-          <BarContent />
+          <BarContent {...props} />
         </Container>
       </AppBar>
     </Slide>

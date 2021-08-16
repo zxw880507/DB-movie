@@ -13,7 +13,7 @@ const useStyles = makeStyles({
     },
   },
 });
-export default function IconButtonList() {
+export default function IconButtonList(props) {
   const classes = useStyles();
   return (
     <Grid
@@ -34,6 +34,7 @@ export default function IconButtonList() {
         size="large"
         startIcon={<AccountCircle />}
         className={classes.button}
+        onClick={props.openLogin}
       >
         LOGIN
       </Button>
