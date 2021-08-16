@@ -124,38 +124,6 @@
                     }
                 }
             }
-            // &.login-tab-selected {
-            //     position: relative;
-            //     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1), -1px -1px 5px rgba(0, 0, 0, 0.1);
-            //     color: #000;
-            //     background-color: transparent;
-            //     z-index: 2;
-            //     &::after {
-            //         position: absolute;
-            //         top: 0;
-            //         right: 0;
-            //         transform: translateX(100%);
-            //         content: "";
-            //         border-bottom: 1.66em solid transparent;
-            //         border-right: 1em solid #fff;
-            //     }
-            // }
-            // &.register-tab-selected {
-            //     position: relative;
-            //     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1), -1px -1px 5px rgba(0, 0, 0, 0.1);
-            //     background-color: transparent;
-            //     color: #000;
-            //     z-index: 2;
-            //     &::after {
-            //         position: absolute;
-            //         top: 0;
-            //         left: 0;
-            //         transform: translateX(-100%);
-            //         content: "";
-            //         border-top: 1.66em solid #fff;
-            //         border-right: 1em solid transparent;
-            //     }
-            // }
         }
         .form-container {
             flex: 1;
@@ -183,8 +151,9 @@
                 }
                 .form-submit-button {
                     margin: 1em 0;
-                    background-color: rgba(13, 37, 63, 0.9);
-                    border-color: rgba(13, 37, 63, 0.9);
+                    background-color: rgba(13, 37, 63, 0.8);
+                    border-color: rgba(13, 37, 63, 0.8);
+                    font-family: "anton", cursive;
                 }
             }
         }
