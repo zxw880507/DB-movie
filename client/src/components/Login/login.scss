@@ -87,6 +87,9 @@
                     text-align: center;
                     background-color: #fff;
                     z-index: 1;
+                    &:hover {
+                        cursor: pointer;
+                    }
                     &:first-child {
                         margin-right: 0.5em;
                         padding-left: 0.5em;
@@ -111,6 +114,7 @@
                             content: "";
                             border-bottom: 2em solid transparent;
                             border-right: 1em solid #fff;
+                            pointer-events: none;
                         }
                     }
                 }
@@ -129,6 +133,7 @@
                             content: "";
                             border-top: 2em solid #fff;
                             border-right: 1em solid transparent;
+                            pointer-events: none;
                         }
                     }
                 }
@@ -144,7 +149,7 @@
                     align-self: center;
                     flex-direction: column;
                     justify-content: center;
-                    width: 50%;
+                    width: 55%;
                     height: 100%;
                     margin: 0 auto;
                     .mb-3 {
