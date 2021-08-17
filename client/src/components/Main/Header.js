@@ -48,7 +48,7 @@ export default function Header() {
     });
   }, []);
   return (
-    <Carousel fade interval={null}>
+    <Carousel fade>
       {data &&
         data.map((movie, index) => (
           <Carousel.Item key={index}>
