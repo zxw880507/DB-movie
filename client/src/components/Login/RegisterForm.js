@@ -1,55 +1,12 @@
 import React, { useState } from "react";
+import useRegister from "../../hooks/useRegister";
 import { Form, Button } from "react-bootstrap";
 export default function RegisterForm() {
-  const [input, setInput] = useState({
-    email: "",
-    password: "",
-    repassword: "",
-  });
-  const [isWarning, setIswarning] = useState({
-    email: false,
-    password: false,
-    repassword: false,
-  });
-  const changeInput = (e) => {
-    setInput((prev) => ({ ...prev, [e.target.dataset.type]: e.target.value }));
-  };
-
-  const checkIsWarning = () => {
-    const setByRegex = (regex, type) => {
-      setIswarning((prev) => ({
-        ...prev,
-        [type]: !regex.test(input[type]),
-      }));
-    };
-    for (let type in input) {
-      switch (type) {
-        case "email":
-          setByRegex(/^\S+@\S+\.\S+$/, type);
-          break;
-        case "password":
-          setByRegex(/^.{6,}/, type);
-          break;
-        case "repassword":
-          setByRegex(new RegExp(`^${input.password}$`), type);
-          break;
-        default:
-          break;
-      }
-    }
-  };
+  const { input, isWarning, changeInput, checkIsWarning, signUp } =
+    useRegister();
 
   return (
-    <Form
-      className="form-card"
-      onSubmit={(e) => {
-        e.preventDefault();
-        checkIsWarning();
-        if (Object.keys(isWarning).every((key) => !isWarning[key])) {
-          console.log("submit successfully");
-        }
-      }}
-    >
+    <Form className="form-card" onSubmit={signUp}>
       <Form.Floating className="mb-3 control-register">
         <Form.Control
           id="floatingInputCustom"
