@@ -5,13 +5,13 @@ export default function LoginForm() {
     <Form className="form-card">
       <Form.Group className="mb-3" controlId="login-email">
         <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
+        <Form.Control type="email" placeholder="Enter email" autoComplete="off"/>
         <Form.Text className="text-muted">Email is invalid</Form.Text>
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="login-password">
         <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
+        <Form.Control type="password" placeholder="Password" autoComplete="off"/>
         <Form.Text className="text-muted">Password is incorrect</Form.Text>
       </Form.Group>
       <Button variant="primary" type="submit" className="form-submit-button">
