@@ -21,6 +21,8 @@ const useStyles = makeStyles({
     width: "70%",
     height: "90%",
     margin: "0 auto",
+    minWidth: 750,
+    minHeight: 400,
   },
   poster: {
     height: "80%",
@@ -34,8 +36,20 @@ const useStyles = makeStyles({
     fontFamily: "Source Sans Pro', Arial, sans-serif",
     display: "flex",
     flexDirection: "column",
-    justifyContent: "space-evenly",
+    overflow: "hidden",
     textShadow: "1px 1px 10px rgba(255,255,255, .2)",
+  },
+  detailHeadingBox: {
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+  },
+  detailOverviewBox: {
+    flex: 3,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
   },
 });
 export default function Header() {
@@ -65,8 +79,8 @@ export default function Header() {
                   className={classes.poster}
                 />
                 <div className={classes.detailBox}>
-                  <div>
-                    <h1 style={{ fontWeight: "500" }}>
+                  <div className={classes.detailHeadingBox}>
+                    <h1 style={{ fontWeight: "500", fontSize: "2em" }}>
                       {movie.title}
                       <span style={{ opacity: 0.8 }}>
                         {" "}
@@ -78,7 +92,7 @@ export default function Header() {
                       <span>Action, Science Fiction</span>
                     </p>
                   </div>
-                  <div>
+                  <div className={classes.detailOverviewBox}>
                     <h4>Overview</h4>
                     <p style={{ textAlign: "justify" }}>{movie.overview}</p>
                   </div>
