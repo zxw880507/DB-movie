@@ -1,7 +1,8 @@
 const express = require("express");
 const app = express();
 const port = 8000;
-// const cache = require("./src/cache");
+
+require("./src/db");
 
 // express middleware
 const { json, urlencoded } = express;
