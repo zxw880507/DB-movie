@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Grid, IconButton, makeStyles } from "@material-ui/core";
 import { GitHub, LinkedIn, AccountCircle } from "@material-ui/icons";
+import UserMenu from "./Menu";
 
 const useStyles = makeStyles({
   button: {
@@ -29,15 +30,19 @@ export default function IconButtonList(props) {
       <IconButton aria-label="linkedin" className={classes.button}>
         <LinkedIn fontSize="large" />
       </IconButton>
-      <Button
-        variant="outlined"
-        size="large"
-        startIcon={<AccountCircle />}
-        className={classes.button}
-        onClick={props.openLogin}
-      >
-        LOGIN
-      </Button>
+      {props.isAuth ? (
+        <UserMenu />
+      ) : (
+        <Button
+          variant="outlined"
+          size="large"
+          startIcon={<AccountCircle />}
+          className={classes.button}
+          onClick={props.openLogin}
+        >
+          LOGIN
+        </Button>
+      )}
     </Grid>
   );
 }
