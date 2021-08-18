@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const cookieSession = require("cookie-session");
 const port = 8000;
 
 const db = require("./src/db");
@@ -7,6 +8,13 @@ const db = require("./src/db");
 // express middleware
 const { json, urlencoded } = express;
 const { join } = require("path");
+
+app.use(
+  cookieSession({
+    name: "session",
+    keys: ["key1", "key2"],
+  })
+);
 
 app.use(json());
 
