@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const port = 8000;
 
-require("./src/db");
+const db = require("./src/db");
 
 // express middleware
 const { json, urlencoded } = express;
@@ -17,7 +17,8 @@ app.use(express.static(join(__dirname, "public")));
 const api = require("./src/routes/index");
 app.use("/api", api);
 //user routes
-app.use("/user", require("./src/routes/user"));
+const user = require("./src/routes/user")(db);
+app.use("/user", user);
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
