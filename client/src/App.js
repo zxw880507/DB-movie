@@ -6,7 +6,9 @@ import Login from "./components/Login";
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
+  const [isAuth, setIsAuth] = useState(true);
 
+  console.log(isAuth, showLogin);
   const openLogin = () => {
     setShowLogin(true);
   };
@@ -14,10 +16,14 @@ function App() {
     setShowLogin(false);
   };
 
+  const userLogin = () => {
+    setIsAuth(true);
+    closeLogin();
+  };
   return (
     <>
-      {showLogin && <Login closeLogin={closeLogin} />}
-      <Navbar openLogin={openLogin} />
+      {showLogin && <Login closeLogin={closeLogin} userLogin={userLogin} />}
+      <Navbar openLogin={openLogin} isAuth={isAuth} />
       <Main />
     </>
   );

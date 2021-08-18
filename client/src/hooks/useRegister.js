@@ -1,7 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 
-export default function useRegister() {
+export default function useRegister(props) {
+  const { userLogin } = props;
   const [input, setInput] = useState({
     email: "",
     password: "",
@@ -44,7 +45,10 @@ export default function useRegister() {
     checkIsWarning();
     if (Object.keys(isWarning).every((key) => isWarning[key] === false)) {
       console.log("submit successfully");
-      axios.post("/user/register", input);
+      axios.post("/user/register", input).then((res) => {
+        console.log(res);
+        userLogin();
+      });
     }
   };
   return { input, isWarning, changeInput, checkIsWarning, signUp };
