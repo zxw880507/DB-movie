@@ -5,7 +5,10 @@ const User = db.define("user", {
   email: {
     type: Sequelize.STRING,
     allowNull: false,
-    unique: true,
+    unique: {
+      args: true,
+      msg: "This email has been registered already!",
+    },
   },
   password: {
     type: Sequelize.STRING,
