@@ -20,7 +20,7 @@ module.exports = (db) => {
   router.get("/login", (req, res) => {
     const email = req.session.email;
     if (!email) {
-      // res.send({ message: "not logged in" });
+      res.status(400);
       return;
     }
     user
@@ -30,7 +30,6 @@ module.exports = (db) => {
         },
       })
       .then((data) => {
-        console.log(data);
         res.sendStatus(200);
       });
   });
