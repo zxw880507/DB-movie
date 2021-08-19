@@ -9,11 +9,18 @@ const User = db.define("user", {
       args: true,
       msg: "This email has been registered already!",
     },
+    get() {
+      return this.getDataValue("email");
+    },
   },
   password: {
     type: Sequelize.STRING,
     allowNull: false,
   },
 });
+
+User.prototype.comparePassword = () => {
+  console.log(this);
+};
 
 module.exports = User;
