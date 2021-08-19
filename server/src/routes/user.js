@@ -7,7 +7,7 @@ router.post("/register", (req, res) => {
     .then((user) => {
       console.log("user registered!!!!");
       req.session.email = user.email;
-      res.sendStatus(200);
+      res.json({ email: user.email });
     })
     .catch((err) => {
       console.log(err.errors[0].message);
@@ -47,10 +47,11 @@ router.post("/login", (req, res) => {
   })
     .then((user) => {
       if (!user) {
-        res.status(400).send({ msg: "No account found with this email." });
+        res.status(400).send({ email: "No account found with this email." });
       } else if (!user.comparePassword(password)) {
-        res.status(400).send({ msg: "Password didn't match. Try again." });
+        res.status(400).send({ password: "Password didn't match. Try again." });
       } else {
+        req.session.email = user.email;
         res.json({ email: user.email });
       }
     })
