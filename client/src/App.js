@@ -24,10 +24,14 @@ function App() {
     setIsAuth(true);
     closeLogin();
   };
+
+  const userLogout = () => {
+    axios.post("/user/logout").then(() => setIsAuth(false));
+  };
   return (
     <>
       {showLogin && <Login closeLogin={closeLogin} userLogin={userLogin} />}
-      <Navbar openLogin={openLogin} isAuth={isAuth} />
+      <Navbar openLogin={openLogin} userLogout={userLogout} isAuth={isAuth} />
       <Main />
     </>
   );

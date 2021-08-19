@@ -12,7 +12,7 @@ const useStyles = makeStyles({
     },
   },
 });
-export default function SimpleMenu() {
+export default function SimpleMenu(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -42,7 +42,14 @@ export default function SimpleMenu() {
         onClose={handleClose}
       >
         <MenuItem onClick={handleClose}>My favorates</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem
+          onClick={() => {
+            props.userLogout();
+            handleClose();
+          }}
+        >
+          Logout
+        </MenuItem>
       </Menu>
     </div>
   );
