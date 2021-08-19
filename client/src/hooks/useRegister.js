@@ -13,6 +13,11 @@ export default function useRegister(props) {
     password: null,
     repassword: null,
   });
+  const [errMsg, setErrMsg] = useState(null);
+
+  const resetErr = () => {
+    setErrMsg(null);
+  };
   const changeInput = (e) => {
     setInput((prev) => ({ ...prev, [e.target.dataset.type]: e.target.value }));
   };
@@ -45,11 +50,22 @@ export default function useRegister(props) {
     checkIsWarning();
     if (Object.keys(isWarning).every((key) => isWarning[key] === false)) {
       console.log("submit successfully");
-      axios.post("/user/register", input).then((res) => {
-        console.log(res);
-        userLogin();
-      });
+      axios
+        .post("/user/register", input)
+        .then(() => {
+          userLogin();
+        })
+        .catch((err) => setErrMsg(err.response.data.msg));
     }
   };
-  return { input, isWarning, changeInput, checkIsWarning, signUp };
+
+  return {
+    input,
+    isWarning,
+    errMsg,
+    resetErr,
+    changeInput,
+    checkIsWarning,
+    signUp,
+  };
 }
