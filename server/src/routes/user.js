@@ -18,8 +18,6 @@ router.post("/register", (req, res) => {
 router.get("/login", (req, res) => {
   const email = req.session.email;
   if (!email) {
-    const a = new User();
-    a.comparePassword();
     res.sendStatus(400);
     return;
   }
@@ -27,16 +25,59 @@ router.get("/login", (req, res) => {
     where: {
       email,
     },
-  }).then((user) => {
-    console.log(user.email);
-    res.sendStatus(200);
-  });
+  })
+    .then((user) => {
+      if (!user) {
+        res.sendStatus(400);
+        return;
+      }
+      res.json({ email: user.email });
+    })
+    .catch((err) => {
+      throw err;
+    });
 });
 
+router.post("/login", (req, res) => {
+  const { email, password } = req.body;
+  User.findOne({
+    where: {
+      email,
+    },
+  })
+    .then((user) => {
+      if (!user) {
+        res.status(400).send({ msg: "No account found with this email." });
+      } else if (!user.comparePassword(password)) {
+        res.status(400).send({ msg: "Password didn't match. Try again." });
+      } else {
+        res.json({ email: user.email });
+      }
+    })
+    .catch((err) => {
+      throw err;
+    });
+});
 router.post("/logout", (req, res) => {
   req.session = null;
   console.log("Logout successfully!!!!");
   res.sendStatus(200);
 });
+
+// router.get("/test", (req, res) => {
+//   const testUser = { email: "test@test.ca", password: "testing" };
+//   User.create(testUser).then((user) => {
+//     console.log(user.comparePassword(testUser.password));
+
+//     user.destroy();
+//   });
+//   User.findOne({
+//     where: {
+//       email: "111",
+//     },
+//   })
+//     .then((user) => console.log(user))
+//     .catch((err) => console.log(err));
+// });
 
 module.exports = router;
