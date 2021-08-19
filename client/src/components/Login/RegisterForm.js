@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import useRegister from "../../hooks/useRegister";
 import { Form, Button } from "react-bootstrap";
-export default function RegisterForm() {
-  const { input, isWarning, changeInput, checkIsWarning, signUp } =
-    useRegister();
+export default function RegisterForm(props) {
+  const { isWarning, errMsg, resetErr, changeInput, checkIsWarning, signUp } =
+    useRegister(props);
 
   return (
     <Form className="form-card" onSubmit={signUp}>
@@ -15,6 +15,7 @@ export default function RegisterForm() {
           data-type="email"
           autoComplete="off"
           onChange={changeInput}
+          onFocus={resetErr}
           onBlur={checkIsWarning}
         />
         <label htmlFor="floatingInputCustom">Email address</label>
@@ -23,6 +24,7 @@ export default function RegisterForm() {
             You have entered an invalid email
           </Form.Text>
         )}
+        {errMsg && <Form.Text className="text-muted">{errMsg}</Form.Text>}
       </Form.Floating>
       <Form.Floating className="mb-3 control-register">
         <Form.Control
