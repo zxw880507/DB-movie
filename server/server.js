@@ -2,8 +2,7 @@ const express = require("express");
 const app = express();
 const cookieSession = require("cookie-session");
 const port = 8000;
-
-const db = require("./src/db");
+require("./src/db");
 
 // express middleware
 const { json, urlencoded } = express;
@@ -25,7 +24,7 @@ app.use(express.static(join(__dirname, "public")));
 const api = require("./src/routes/index");
 app.use("/api", api);
 //user routes
-const user = require("./src/routes/user")(db);
+const user = require("./src/routes/user");
 app.use("/user", user);
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
