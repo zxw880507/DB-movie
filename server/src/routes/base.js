@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const axios = require("axios");
 const cache = require("../cache");
+const Medium = require("../db/models/medium");
 
 module.exports = (api_key, helpers) => {
   router.get("/trending/:type/:time_window", (request, response) => {
@@ -43,6 +44,9 @@ module.exports = (api_key, helpers) => {
           .get(url)
           .then((res) => {
             response.json(res.data);
+            Medium.bulkCreate(res.data.results, { updateOnDuplicate: ["id"] })
+              .then(() => console.log("Media are imported"))
+              .catch(() => console.log("Media exists!"));
             cache
               .set(cacheKey, res.data, 10000)
               .then((res) => console.log(res))
