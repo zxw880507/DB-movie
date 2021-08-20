@@ -8,11 +8,15 @@ import Login from "./components/Login";
 function App() {
   const [showLogin, setShowLogin] = useState(false);
   const [isAuth, setIsAuth] = useState(false);
+  const [account, setAccount] = useState(null);
 
   useEffect(() => {
-    axios.get("/user/login").then(() => setIsAuth(true));
+    axios.get("/user/login").then((res) => {
+      setIsAuth(true);
+      setAccount(res.data.email);
+    });
   }, []);
-  // console.log(isAuth, showLogin);
+
   const openLogin = () => {
     setShowLogin(true);
   };
@@ -20,18 +24,27 @@ function App() {
     setShowLogin(false);
   };
 
-  const userLogin = () => {
+  const userLogin = (account) => {
     setIsAuth(true);
+    setAccount(account);
     closeLogin();
   };
 
   const userLogout = () => {
-    axios.post("/user/logout").then(() => setIsAuth(false));
+    axios.post("/user/logout").then(() => {
+      setIsAuth(false);
+      setAccount(null);
+    });
   };
   return (
     <>
       {showLogin && <Login closeLogin={closeLogin} userLogin={userLogin} />}
-      <Navbar openLogin={openLogin} userLogout={userLogout} isAuth={isAuth} />
+      <Navbar
+        openLogin={openLogin}
+        userLogout={userLogout}
+        isAuth={isAuth}
+        account={account}
+      />
       <Main />
     </>
   );
