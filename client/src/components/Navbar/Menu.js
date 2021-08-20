@@ -70,7 +70,7 @@ export default function UserMenu(props) {
         className={classes.button}
         onClick={handleClick}
       >
-        zxw880507@gmail.com
+        {props.account}
       </Button>
       {show && (
         <div className={classes.menuContainer}>
