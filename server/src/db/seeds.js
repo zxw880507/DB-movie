@@ -9,7 +9,7 @@ module.exports = () => {
     });
   }
 
-  User.bulkCreate(data).then((users) => {
+  User.bulkCreate(data, { individualHooks: true }).then(() => {
     console.log("test seeds imported!");
   });
 };
