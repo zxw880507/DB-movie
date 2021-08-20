@@ -1,7 +1,15 @@
 const User = require("./models/user");
 
 module.exports = () => {
-  User.create({ email: "zxw880507@gmail.com", password: "111111" }).then(() =>
-    console.log("seeds imported")
-  );
+  const data = [];
+  for (let i = 1; i <= 5; i++) {
+    data.push({
+      email: `test${i}@db.com`,
+      password: `test`,
+    });
+  }
+
+  User.bulkCreate(data).then((users) => {
+    console.log("test seeds imported!");
+  });
 };
