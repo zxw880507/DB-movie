@@ -18,7 +18,6 @@ router.post("/register", (req, res) => {
 router.get("/login", (req, res) => {
   const email = req.session.email;
   if (!email) {
-    res.sendStatus(400);
     return;
   }
   User.findOne({
@@ -28,7 +27,6 @@ router.get("/login", (req, res) => {
   })
     .then((user) => {
       if (!user) {
-        res.sendStatus(400);
         return;
       }
       res.json({ email: user.email });
