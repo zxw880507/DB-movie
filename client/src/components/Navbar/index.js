@@ -14,14 +14,14 @@ const useStyles = makeStyles({
     backgroundColor: "rgba(13, 37, 63)",
   },
 });
-export default function HideOnScroll(props) {
+export default function HideOnScroll() {
   const classes = useStyles();
   const trigger = useScrollTrigger();
   return (
     <Slide in={!trigger}>
       <AppBar className={classes.container}>
         <Container maxWidth="lg">
-          <BarContent {...props} />
+          <BarContent />
         </Container>
       </AppBar>
     </Slide>

@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Button, makeStyles } from "@material-ui/core";
+import { useAuth } from "../../hooks/providers/Auth";
 
 const useStyles = makeStyles({
   button: {
@@ -47,6 +48,7 @@ export default function UserMenu(props) {
   const [show, setShow] = useState(false);
   const ref = useRef(null);
 
+  const { authState, userLogout } = useAuth();
   const handleClick = () => {
     setShow((prev) => !prev);
   };
@@ -70,7 +72,7 @@ export default function UserMenu(props) {
         className={classes.button}
         onClick={handleClick}
       >
-        {props.account}
+        {authState.user.email}
       </Button>
       {show && (
         <div className={classes.menuContainer}>
@@ -79,7 +81,7 @@ export default function UserMenu(props) {
             className={classes.menuItem}
             onClick={() => {
               handleClick();
-              props.userLogout();
+              userLogout();
             }}
           >
             Log out

@@ -19,7 +19,7 @@ const useStyles = makeStyles({
     paddingLeft: 25,
   },
 });
-export default function BarContent(props) {
+export default function BarContent() {
   const classes = useStyles();
 
   return (
@@ -44,7 +44,7 @@ export default function BarContent(props) {
           className={classes.right}
         >
           <Search />
-          <IconButtonList {...props} />
+          <IconButtonList  />
         </Grid>
       </Grid>
     </Toolbar>

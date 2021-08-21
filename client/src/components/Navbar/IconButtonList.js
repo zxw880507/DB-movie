@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Grid, IconButton, makeStyles } from "@material-ui/core";
 import { GitHub, LinkedIn, AccountCircle } from "@material-ui/icons";
 import UserMenu from "./Menu";
+import { useAuth } from "../../hooks/providers/Auth";
 
 const useStyles = makeStyles({
   button: {
@@ -16,6 +17,7 @@ const useStyles = makeStyles({
 });
 export default function IconButtonList(props) {
   const classes = useStyles();
+  const { authState, toggleLoginWindow } = useAuth();
   return (
     <Grid
       container
@@ -30,15 +32,15 @@ export default function IconButtonList(props) {
       <IconButton aria-label="linkedin" className={classes.button}>
         <LinkedIn fontSize="large" />
       </IconButton>
-      {props.isAuth ? (
-        <UserMenu {...props} />
+      {authState.isAuth ? (
+        <UserMenu />
       ) : (
         <Button
           variant="outlined"
           size="large"
           startIcon={<AccountCircle />}
           className={classes.button}
-          onClick={props.openLogin}
+          onClick={toggleLoginWindow}
         >
           LOGIN
         </Button>
