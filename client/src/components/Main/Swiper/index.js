@@ -3,11 +3,11 @@ import TabItemList from "./TabItemList";
 import SwiperItem from "./SwiperItem";
 import useSwiper from "../../../hooks/useSwiper";
 import useScroller from "../../../hooks/useScroller";
+
 import "./Swiper.css";
 
 export default function Swiper(props) {
   const { tab } = props;
-
   const { selectedTag, data, onChange } = useSwiper(tab);
   const { dimension, ref, onScroll } = useScroller(data);
   const { positionX, overflowX, barwidth } = dimension;
