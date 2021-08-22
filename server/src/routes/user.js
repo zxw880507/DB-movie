@@ -29,7 +29,7 @@ router.get("/login", (req, res) => {
       if (!user) {
         return;
       }
-      res.json({ email: user.email });
+      res.json({ userId: user.id, email: user.email });
     })
     .catch((err) => {
       throw err;
@@ -50,7 +50,7 @@ router.post("/login", (req, res) => {
         res.status(400).send({ password: "Password didn't match. Try again." });
       } else {
         req.session.email = user.email;
-        res.json({ email: user.email });
+        res.json({ userId: user.id, email: user.email });
       }
     })
     .catch((err) => {
@@ -63,20 +63,16 @@ router.post("/logout", (req, res) => {
   res.sendStatus(200);
 });
 
-// router.get("/test", (req, res) => {
-//   const testUser = { email: "test@test.ca", password: "testing" };
-//   User.create(testUser).then((user) => {
-//     console.log(user.comparePassword(testUser.password));
+router.post("/favorites", (req, res) => {
+  const { user, source } = req.body;
+  User.findByPk(user.userId).then((user) =>
+    user.addMedium(source).then((res) => console.log(res))
+  );
+  // .then((res) => console.log(res));
+});
 
-//     user.destroy();
-//   });
-//   User.findOne({
-//     where: {
-//       email: "111",
-//     },
-//   })
-//     .then((user) => console.log(user))
-//     .catch((err) => console.log(err));
-// });
+router.delete("/favorites", (req, res) => {
+  console.log(req);
+});
 
 module.exports = router;
