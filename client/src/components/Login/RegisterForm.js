@@ -1,9 +1,11 @@
 import React from "react";
 import useRegister from "../../hooks/useRegister";
 import { Form, Button } from "react-bootstrap";
-export default function RegisterForm(props) {
+import { useAuth } from "../../hooks/providers/Auth";
+
+export default function RegisterForm() {
   const { isWarning, errMsg, resetErr, changeInput, checkIsWarning, signUp } =
-    useRegister(props);
+    useRegister(useAuth());
 
   return (
     <Form className="form-card" onSubmit={signUp}>

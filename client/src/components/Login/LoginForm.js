@@ -1,8 +1,10 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
 import useLogin from "../../hooks/useLogin";
-export default function LoginForm(props) {
-  const { alerts, changeInput, resetAlerts, login } = useLogin(props);
+import { useAuth } from "../../hooks/providers/Auth";
+
+export default function LoginForm() {
+  const { alerts, changeInput, resetAlerts, login } = useLogin(useAuth());
   return (
     <Form className="form-card" onSubmit={login}>
       <Form.Group className="mb-3" controlId="login-email">
