@@ -18,7 +18,7 @@ export default function useLogin(props) {
       axios
         .post("/user/login", input)
         .then((res) => {
-          props.userLogin(res.data.email);
+          props.userLogin(res.data);
         })
         .catch((err) => {
           setAlerts((prev) => ({ ...prev, ...err.response.data }));
