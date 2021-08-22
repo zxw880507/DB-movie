@@ -1,6 +1,7 @@
 const db = require("./db");
 require("./models/user");
 require("./models/medium");
+require("./models/favorite");
 const seeds = require("./seeds");
 
 db.authenticate()
