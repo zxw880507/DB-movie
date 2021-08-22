@@ -8,7 +8,7 @@ export default function useFavorites() {
     axios.post("/user/favorites", data);
   };
   const removeFavorites = (data) => {
-    axios.delete("user/favorites", data);
+    axios.delete("user/favorites", { data });
   };
 
   const favorIt = (selected, data) => {
