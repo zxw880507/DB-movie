@@ -52,8 +52,8 @@ export default function useRegister(props) {
       console.log("submit successfully");
       axios
         .post("/user/register", input)
-        .then(() => {
-          userLogin();
+        .then((res) => {
+          userLogin(res.data);
         })
         .catch((err) => setErrMsg(err.response.data.msg));
     }
