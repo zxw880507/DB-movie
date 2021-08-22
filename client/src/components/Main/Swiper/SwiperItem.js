@@ -2,11 +2,13 @@ import React from "react";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import classNames from "classnames";
 import { useFav } from "../../../hooks/providers/Favorites";
+import { useAuth } from "../../../hooks/providers/Auth";
 
 export default function SwiperItem(props) {
   const { source } = props;
 
   const { favoritesList, favorIt } = useFav();
+  const { user } = useAuth().authState;
 
   const selected = favoritesList.includes(source.id);
   const iconClass = classNames("fav-icon", {
@@ -23,7 +25,7 @@ export default function SwiperItem(props) {
         />
         <button
           className="overflow-img-fav"
-          onClick={() => favorIt(selected, {})}
+          onClick={() => favorIt(selected, { user, source })}
         >
           <FavoriteIcon className={iconClass} />
         </button>
