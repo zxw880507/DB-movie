@@ -18,6 +18,7 @@
   margin: 0 1em;
 }
 .swiper-item-container .overflow-container .overflow-box .overflow-item-container .overflow-img-box {
+  position: relative;
   border-radius: 1em;
   overflow: hidden;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
@@ -25,6 +26,21 @@
 .swiper-item-container .overflow-container .overflow-box .overflow-item-container .overflow-img-box .overflow-img {
   width: 150px;
   height: 225px;
+}
+.swiper-item-container .overflow-container .overflow-box .overflow-item-container .overflow-img-box .overflow-img-fav {
+  position: absolute;
+  top: 2%;
+  right: 0;
+  background-color: transparent;
+  border: none;
+}
+.swiper-item-container .overflow-container .overflow-box .overflow-item-container .overflow-img-box .overflow-img-fav .fav-icon {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 2em;
+  filter: drop-shadow(3px 5px 2px rgba(0, 0, 0, 0.4));
+}
+.swiper-item-container .overflow-container .overflow-box .overflow-item-container .overflow-img-box .overflow-img-fav .fav-icon.selected {
+  color: rgba(255, 0, 0, 0.8);
 }
 .swiper-item-container .overflow-container .overflow-box .overflow-item-container .overflow-item-title-box {
   display: flex;
