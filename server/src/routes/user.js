@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const User = require("../db/models/user");
+const Medium = require("../db/models/medium");
+const Favorite = require("../db/models/favorite");
 
 router.post("/register", (req, res) => {
   const { email, password } = req.body;
@@ -63,16 +65,39 @@ router.post("/logout", (req, res) => {
   res.sendStatus(200);
 });
 
-router.post("/favorites", (req, res) => {
+router.get("/favorites", (req, res) => {
+  const { userId } = req.query;
+  User.findByPk(userId, {
+    include: { model: Medium, through: { attributes: [] } },
+  })
+    .then((userData) => res.json(userData.media))
+    .catch((err) => console.log(err));
+});
+
+router.post("/favorites", async (req, res) => {
   const { user, source } = req.body;
-  User.findByPk(user.userId).then((user) =>
-    user.addMedium(source).then((res) => console.log(res))
-  );
-  // .then((res) => console.log(res));
+
+  const currentUser = await User.findByPk(user.userId);
+  let currentMedium = await Medium.findByPk(source.id);
+  if (!currentMedium) {
+    currentMedium = await Medium.create(source);
+  }
+  currentUser
+    .addMedium(currentMedium)
+    .then(() => res.sendStatus(201))
+    .catch((err) => console.log(err));
 });
 
 router.delete("/favorites", (req, res) => {
-  console.log(req);
+  const { user, source } = req.body;
+  Favorite.destroy({
+    where: {
+      userId: user.userId,
+      mediumId: source.id,
+    },
+  })
+    .then(() => res.sendStatus(201))
+    .catch((err) => console.log(err));
 });
 
 module.exports = router;
