@@ -24,3 +24,10 @@ export function shuffle(data, num) {
 
   return random.slice(0, num);
 }
+
+export function dropMedium(list, source) {
+  const listCopy = [...list];
+  const index = list.findIndex((el) => el.id === source.id);
+  listCopy.splice(index, 1);
+  return listCopy;
+}
