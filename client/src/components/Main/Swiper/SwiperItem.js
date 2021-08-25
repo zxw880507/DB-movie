@@ -7,10 +7,10 @@ import { useAuth } from "../../../hooks/providers/Auth";
 export default function SwiperItem(props) {
   const { source } = props;
 
-  const { favoritesList, favorIt } = useFav();
   const { user } = useAuth().authState;
+  const { favoritesList, favorIt } = useFav();
 
-  const selected = favoritesList.includes(source.id);
+  const selected = favoritesList.map((el) => el.id).includes(source.id);
   const iconClass = classNames("fav-icon", {
     selected: selected,
   });
