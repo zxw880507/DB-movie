@@ -1,14 +1,19 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { dropMedium } from "../helpers";
 
-export default function useFavorites() {
+export default function useFavorites(user) {
   const [favoritesList, setFavoritesList] = useState([]);
 
   const addFavorites = (data) => {
-    axios.post("/user/favorites", data);
+    axios
+      .post("/user/favorites", data)
+      .then(() => setFavoritesList((prev) => [...prev, data.source]));
   };
   const removeFavorites = (data) => {
-    axios.delete("user/favorites", { data });
+    axios
+      .delete("user/favorites", { data })
+      .then(() => setFavoritesList((prev) => dropMedium(prev, data.source)));
   };
 
   const favorIt = (selected, data) => {
@@ -19,10 +24,17 @@ export default function useFavorites() {
     }
   };
   useEffect(() => {
-    axios
-      .get("/user/favorites", { params: {} })
-      .then((res) => setFavoritesList());
-  }, []);
+    if (user) {
+      axios
+        .get("/user/favorites", {
+          params: { userId: user.userId },
+        })
+        .then((res) => {
+          setFavoritesList(res.data);
+          console.log(res.data);
+        });
+    }
+  }, [user]);
 
-  return { favoritesList, favorIt };
+  return { favoritesList, setFavoritesList, favorIt };
 }
