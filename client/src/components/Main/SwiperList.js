@@ -1,5 +1,5 @@
 import React from "react";
-import { ProvideFavorites } from "../../hooks/providers/Favorites";
+
 import { Grid } from "@material-ui/core";
 import Swiper from "./Swiper";
 import { getTags } from "../../helpers";
@@ -25,18 +25,16 @@ const tabs = [
 ];
 export default function SwpiperList() {
   return (
-    <ProvideFavorites>
-      <Grid
-        container
-        style={{ margin: "2em 0" }}
-        direction="column"
-        justifyContent="space-evenly"
-        alignItems="center"
-      >
-        {tabs.map((tab, index) => (
-          <Swiper key={index} tab={getTags(tab)} />
-        ))}
-      </Grid>
-    </ProvideFavorites>
+    <Grid
+      container
+      style={{ margin: "2em 0" }}
+      direction="column"
+      justifyContent="space-evenly"
+      alignItems="center"
+    >
+      {tabs.map((tab, index) => (
+        <Swiper key={index} tab={getTags(tab)} />
+      ))}
+    </Grid>
   );
 }
