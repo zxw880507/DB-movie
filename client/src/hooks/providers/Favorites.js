@@ -2,8 +2,8 @@ import { createContext, useContext } from "react";
 import useFavorites from "../useFavorites";
 const favoritesContext = createContext();
 
-export function ProvideFavorites({ children }) {
-  const fav = useFavorites();
+export function ProvideFavorites({ children, user }) {
+  const fav = useFavorites(user);
   return (
     <favoritesContext.Provider value={fav}>
       {children}
