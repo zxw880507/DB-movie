@@ -4,15 +4,23 @@ import Navbar from "./components/Navbar";
 import Main from "./components/Main";
 import Login from "./components/Login";
 import { ProvideAuth } from "./hooks/providers/Auth";
+import { BrowserRouter as Router, Route, useLocation } from "react-router-dom";
 
 function App() {
   return (
     <>
-      <ProvideAuth>
-        <Login />
-        <Navbar />
-        <Main />
-      </ProvideAuth>
+      <Router>
+        <Route
+          path="/"
+          render={({ location }) => (
+            <ProvideAuth>
+              <Login />
+              <Navbar />
+              <Main location={location} />
+            </ProvideAuth>
+          )}
+        />
+      </Router>
     </>
   );
 }
