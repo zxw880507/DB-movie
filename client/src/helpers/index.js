@@ -31,3 +31,7 @@ export function dropMedium(list, source) {
   listCopy.splice(index, 1);
   return listCopy;
 }
+
+export function getUsername(email) {
+  return email.match(/.+(?=@.+)/g).join("");
+}
