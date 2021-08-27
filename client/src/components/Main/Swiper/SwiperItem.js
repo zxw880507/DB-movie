@@ -23,12 +23,14 @@ export default function SwiperItem(props) {
           alt=""
           className="overflow-img"
         />
-        <button
-          className="overflow-img-fav"
-          onClick={() => favorIt(selected, { user, source })}
-        >
-          <FavoriteIcon className={iconClass} />
-        </button>
+        {user && (
+          <button
+            className="overflow-img-fav"
+            onClick={() => favorIt(selected, { user, source })}
+          >
+            <FavoriteIcon className={iconClass} />
+          </button>
+        )}
       </div>
       <div className="overflow-item-title-box">
         <p className="overflow-item-title">{source.title || source.name}</p>
