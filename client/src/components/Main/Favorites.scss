@@ -119,13 +119,13 @@
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-between;
-        margin-top: 1em;
-        gap: 1em;
-        &::after {
-            content: "";
-            flex: auto;
-        }
+        margin: 1em 1em 0;
         .favorite-item-container {
+            width: 10em;
+            margin: 1em 1em 0;
+            &.hidden {
+                visibility: hidden;
+            }
             .favorite-img-box {
                 width: 10em;
                 border-radius: 1em;
