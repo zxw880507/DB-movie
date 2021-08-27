@@ -72,7 +72,28 @@ export default function Favorites() {
             </div>
           </div>
         ))}
+        <HiddenBox />
       </div>
     </div>
+  );
+}
+
+function HiddenBox() {
+  return (
+    <>
+      <div class="favorite-item-container hidden"></div>
+      <div class="favorite-item-container hidden"></div>
+      <div class="favorite-item-container hidden"></div>
+      <div class="favorite-item-container hidden"></div>
+      <div class="favorite-item-container hidden"></div>
+      <div class="favorite-item-container hidden"></div>
+      <div class="favorite-item-container hidden"></div>
+      <div class="favorite-item-container hidden"></div>
+      <div class="favorite-item-container hidden"></div>
+      <div class="favorite-item-container hidden"></div>
+      <div class="favorite-item-container hidden"></div>
+      <div class="favorite-item-container hidden"></div>
+      <div class="favorite-item-container hidden"></div>
+    </>
   );
 }
