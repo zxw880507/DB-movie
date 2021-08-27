@@ -7,7 +7,7 @@ import { useAuth } from "../../../hooks/providers/Auth";
 export default function SwiperItem(props) {
   const { source } = props;
 
-  const { user } = useAuth().authState;
+  const { user, isAuth } = useAuth().authState;
   const { favoritesList, favorIt } = useFav();
 
   const selected = favoritesList.map((el) => el.id).includes(source.id);
@@ -23,7 +23,7 @@ export default function SwiperItem(props) {
           alt=""
           className="overflow-img"
         />
-        {user && (
+        {isAuth && (
           <button
             className="overflow-img-fav"
             onClick={() => favorIt(selected, { user, source })}
