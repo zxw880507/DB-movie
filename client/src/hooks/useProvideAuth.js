@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useHistory, useLocation, useParams } from "react-router-dom";
-import { getUsername } from "../helpers";
 
 export default function useProvideAuth() {
   const [showLogin, setShowLogin] = useState(false);
@@ -9,7 +7,6 @@ export default function useProvideAuth() {
     isAuth: false,
     user: null,
   });
-  const history = useHistory();
 
   useEffect(() => {
     axios.get("/user/login").then((res) => {
@@ -18,14 +15,6 @@ export default function useProvideAuth() {
       }
     });
   }, []);
-
-  useEffect(() => {
-    if (authState.isAuth) {
-      history.replace(`/${getUsername(authState.user.email)}`);
-    } else {
-      history.replace("/");
-    }
-  }, [authState, history]);
 
   const toggleLoginWindow = () => {
     if (showLogin) {
@@ -37,14 +26,13 @@ export default function useProvideAuth() {
 
   const userLogin = (data) => {
     setAuthState({ isAuth: true, user: data });
-    history.replace(`/${getUsername(data.email)}`);
+
     toggleLoginWindow();
   };
 
   const userLogout = () => {
-    axios.post("/user/logout").then(() => {
+    return axios.post("/user/logout").then(() => {
       setAuthState({ isAuth: false, user: null });
-      history.replace("/");
     });
   };
 
