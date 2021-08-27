@@ -18,6 +18,7 @@ const useStyles = makeStyles({
 export default function IconButtonList(props) {
   const classes = useStyles();
   const { authState, toggleLoginWindow } = useAuth();
+
   return (
     <Grid
       container

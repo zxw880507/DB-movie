@@ -20,6 +20,7 @@ router.post("/register", (req, res) => {
 router.get("/login", (req, res) => {
   const email = req.session.email;
   if (!email) {
+    res.send(null);
     return;
   }
   User.findOne({
@@ -29,7 +30,7 @@ router.get("/login", (req, res) => {
   })
     .then((user) => {
       if (!user) {
-        return;
+        res.send(null);
       }
       res.json({ userId: user.id, email: user.email });
     })

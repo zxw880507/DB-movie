@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Button, makeStyles } from "@material-ui/core";
 import { useAuth } from "../../hooks/providers/Auth";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
   button: {
@@ -47,11 +48,13 @@ export default function UserMenu(props) {
   const classes = useStyles();
   const [show, setShow] = useState(false);
   const ref = useRef(null);
+  const history = useHistory();
 
   const { authState, userLogout } = useAuth();
   const handleClick = () => {
     setShow((prev) => !prev);
   };
+
   useEffect(() => {
     const handleClose = (e) => {
       if (ref.current && !ref.current.contains(e.target)) {
@@ -81,7 +84,7 @@ export default function UserMenu(props) {
             className={classes.menuItem}
             onClick={() => {
               handleClick();
-              userLogout();
+              userLogout().then(() => history.push("/"));
             }}
           >
             Log out

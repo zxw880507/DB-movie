@@ -26,11 +26,12 @@ export default function useProvideAuth() {
 
   const userLogin = (data) => {
     setAuthState({ isAuth: true, user: data });
+
     toggleLoginWindow();
   };
 
   const userLogout = () => {
-    axios.post("/user/logout").then(() => {
+    return axios.post("/user/logout").then(() => {
       setAuthState({ isAuth: false, user: null });
     });
   };
