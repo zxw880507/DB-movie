@@ -17,17 +17,15 @@ function App() {
   return (
     <ProvideAuth>
       <Router>
-        <PrivateRoute />
-        <Route path="/">
-          <Login />
-          <Navbar />
-          <Main />
-        </Route>
+        <CustomRoute path="/" />
+        <Login />
+        <Navbar />
+        <Main />
       </Router>
     </ProvideAuth>
   );
 }
-function PrivateRoute() {
+function CustomRoute({ children, ...rest }) {
   const { isAuth, user } = useAuth().authState;
 
   const location = useLocation();
@@ -36,6 +34,12 @@ function PrivateRoute() {
     location.pathname === "/" && isAuth
       ? `/${getUsername(user.email)}`
       : location.pathname;
-  return isAuth && <Redirect to={path} />;
+
+  return (
+    <Route
+      {...rest}
+      render={() => (isAuth ? <Redirect to={path} /> : children)}
+    />
+  );
 }
 export default App;
