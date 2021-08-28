@@ -34,7 +34,7 @@ export default function IconButtonList(props) {
         <LinkedIn fontSize="large" />
       </IconButton>
       {authState.isAuth ? (
-        <UserMenu />
+        <UserMenu {...props} />
       ) : (
         <Button
           variant="outlined"
