@@ -62,7 +62,7 @@ function NoMatch() {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 100);
+    }, 300);
   }, []);
   return (
     !loading && (
