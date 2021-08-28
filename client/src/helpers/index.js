@@ -35,3 +35,46 @@ export function dropMedium(list, source) {
 export function getUsername(email) {
   return email.match(/.+(?=@.+)/g).join("");
 }
+
+export function replaceUnderscore(str) {
+  return str.replace(/_/g, " ");
+}
+
+export function filterMedia(list, filters) {
+  const listCopy = [...list];
+  const { media_type, sort_by, order } = filters;
+  const filter = listCopy.filter((source) => {
+    switch (media_type) {
+      case "movie":
+        return source.title;
+      case "TV":
+        return source.name;
+      default:
+        return true;
+    }
+  });
+  const sortBy = filter.sort((a, b) => {
+    switch (sort_by) {
+      case "name": {
+        let _a = a.title || a.name;
+        let _b = b.title || b.name;
+        if (order === "asc") {
+          return _a > _b ? 1 : -1;
+        }
+        return _a < _b ? 1 : -1;
+      }
+
+      case "release_date": {
+        let _a = a.release_date || a.first_air_date;
+        let _b = b.release_date || b.first_air_date;
+        if (order === "asc") {
+          return _a > _b ? 1 : -1;
+        }
+        return _a < _b ? 1 : -1;
+      }
+      default:
+        return true;
+    }
+  });
+  return sortBy;
+}
