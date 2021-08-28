@@ -1,10 +1,8 @@
 import React from "react";
 import classNames from "classnames";
+import { replaceUnderscore } from "../../../helpers";
 
 export default function FilterTab(props) {
-  function replaceUnderscore(str) {
-    return str.replace(/_/g, " ");
-  }
   const { category, values, selectedValue, onSelect } = props;
 
   return (
