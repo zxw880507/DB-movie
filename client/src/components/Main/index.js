@@ -20,7 +20,7 @@ const useStyles = makeStyles({
     marginTop: "2em",
   },
 });
-export default function Main(props) {
+export default function Main() {
   const classes = useStyles();
   const { authState } = useAuth();
 
@@ -57,21 +57,29 @@ export default function Main(props) {
 function NoMatch() {
   const location = useLocation();
   const classes = useStyles();
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 100);
+  }, []);
   return (
-    <div className={classes.noMatch}>
-      <h1 style={{ fontSize: "5em" }}>Sorry, this one stays red.</h1>
-      <h2 style={{ fontSize: "3em", marginBottom: "1em" }}>
-        No match for <code>{location.pathname}</code>.
-      </h2>
-      <h3>
-        The page you’re looking for doesn’t exist, but you’re not at a dead end.
-        Here are a few options:
-      </h3>
-      <ul style={{ fontSize: "1.5em" }}>
-        <li>Be sure you have the right url and try again</li>
-        <li>Sign up or log in</li>
-      </ul>
-    </div>
+    !loading && (
+      <div className={classes.noMatch}>
+        <h1 style={{ fontSize: "5em" }}>Sorry, this one stays red.</h1>
+        <h2 style={{ fontSize: "3em", marginBottom: "1em" }}>
+          No match for <code>{location.pathname}</code>.
+        </h2>
+        <h3>
+          The page you’re looking for doesn’t exist, but you’re not at a dead
+          end. Here are a few options:
+        </h3>
+        <ul style={{ fontSize: "1.5em" }}>
+          <li>Be sure you have the right url and try again</li>
+          <li>Sign up or log in</li>
+        </ul>
+      </div>
+    )
   );
 }
