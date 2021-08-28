@@ -25,6 +25,12 @@ const Medium = db.define("medium", {
   original_language: {
     type: DataTypes.TEXT,
   },
+  release_date: {
+    type: DataTypes.STRING,
+  },
+  first_air_date: {
+    type: DataTypes.STRING,
+  },
 });
 
 module.exports = Medium;
