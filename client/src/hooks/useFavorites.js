@@ -31,7 +31,6 @@ export default function useFavorites(user) {
         })
         .then((res) => {
           setFavoritesList(res.data);
-          console.log(res.data);
         });
     }
   }, [user]);
