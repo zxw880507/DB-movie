@@ -1,26 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Favorites.css";
 import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
 import { useFav } from "../../../hooks/providers/Favorites";
 import FilterTab from "./FilterTab";
+import { filterMedia } from "../../../helpers";
 
 const tabs = {
   media_type: ["movie", "TV", "all"],
   sort_by: ["name", "release_date"],
-  order: ["desc", "asc"],
+  order: ["asc", "desc"],
 };
 export default function Favorites() {
-  const { favoritesList } = useFav();
+  const { favoritesList, removeFavorites } = useFav();
   const [filters, setFilters] = useState({
     media_type: "all",
     sort_by: "name",
-    order: "desc",
+    order: "asc",
   });
 
-  console.log(favoritesList);
   const onSelect = (category, value) => {
     setFilters((prev) => ({ ...prev, [category]: value }));
   };
+
   return (
     <div className="favorite-main-container">
       <div className="favorite-head-img" />
@@ -40,7 +41,7 @@ export default function Favorites() {
       </div>
 
       <div className="favorite-list-grid">
-        {favoritesList.map((source) => (
+        {filterMedia(favoritesList, filters).map((source) => (
           <div className="favorite-item-container" key={source.id}>
             <div className="favorite-img-box">
               <img
@@ -48,7 +49,10 @@ export default function Favorites() {
                 alt=""
                 className="favorite-img"
               />
-              <button className="favorite-icon-btn">
+              <button
+                className="favorite-icon-btn"
+                onClick={() => removeFavorites(source)}
+              >
                 <RemoveCircleIcon className="remove-icon" />
               </button>
             </div>
