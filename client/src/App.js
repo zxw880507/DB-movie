@@ -35,11 +35,6 @@ function CustomRoute({ children, ...rest }) {
       ? `/${getUsername(user.email)}`
       : location.pathname;
 
-  return (
-    <Route
-      {...rest}
-      render={() => (isAuth ? <Redirect to={path} /> : children)}
-    />
-  );
+  return <Route {...rest}>{isAuth ? <Redirect to={path} /> : children}</Route>;
 }
 export default App;
