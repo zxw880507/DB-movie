@@ -4,6 +4,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import logo from "../../image/movie_logo.svg";
 import Search from "./Search";
 import IconButtonList from "./IconButtonList";
+import { useAuth } from "../../hooks/providers/Auth";
+import { getUsername } from "../../helpers";
 
 const useStyles = makeStyles({
   container: {
@@ -21,7 +23,8 @@ const useStyles = makeStyles({
 });
 export default function BarContent() {
   const classes = useStyles();
-
+  const { user } = useAuth().authState;
+  const url = user ? getUsername(user.email) : "/";
   return (
     <Toolbar className={classes.container}>
       <Grid
@@ -32,7 +35,9 @@ export default function BarContent() {
         wrap="nowrap"
       >
         <div className={classes.logo}>
-          <img src={logo} alt="logo" />
+          <a href={url}>
+            <img src={logo} alt="logo" />
+          </a>
         </div>
 
         <Grid
@@ -44,7 +49,7 @@ export default function BarContent() {
           className={classes.right}
         >
           <Search />
-          <IconButtonList  />
+          <IconButtonList url={url} />
         </Grid>
       </Grid>
     </Toolbar>
