@@ -38,8 +38,12 @@ const useStyles = makeStyles({
     textAlign: "center",
     padding: "1em 2em",
     cursor: "pointer",
+    textDecoration: "none",
+    backgroundColor: "rgba(13, 37, 63, .9)",
+    border: "none",
     "&:hover": {
       opacity: 1,
+      color: "#fff",
       backgroundColor: "rgba(255,255,255, .1)",
     },
   },
@@ -79,8 +83,10 @@ export default function UserMenu(props) {
       </Button>
       {show && (
         <div className={classes.menuContainer}>
-          <div className={classes.menuItem}>My favorates</div>
-          <div
+          <a className={classes.menuItem} href={`${props.url}/favorites`}>
+            My favorates
+          </a>
+          <button
             className={classes.menuItem}
             onClick={() => {
               handleClick();
@@ -88,7 +94,7 @@ export default function UserMenu(props) {
             }}
           >
             Log out
-          </div>
+          </button>
         </div>
       )}
     </div>
