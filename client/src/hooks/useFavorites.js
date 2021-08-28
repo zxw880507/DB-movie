@@ -5,22 +5,22 @@ import { dropMedium } from "../helpers";
 export default function useFavorites(user) {
   const [favoritesList, setFavoritesList] = useState([]);
 
-  const addFavorites = (data) => {
+  const addFavorites = (source) => {
     axios
-      .post("/user/favorites", data)
-      .then(() => setFavoritesList((prev) => [...prev, data.source]));
+      .post("/user/favorites", { user, source })
+      .then(() => setFavoritesList((prev) => [...prev, source]));
   };
-  const removeFavorites = (data) => {
+  const removeFavorites = (source) => {
     axios
-      .delete("user/favorites", { data })
-      .then(() => setFavoritesList((prev) => dropMedium(prev, data.source)));
+      .delete("/user/favorites", { data: { user, source } })
+      .then(() => setFavoritesList((prev) => dropMedium(prev, source)));
   };
 
-  const favorIt = (selected, data) => {
+  const favorIt = (selected, source) => {
     if (!selected) {
-      addFavorites(data);
+      addFavorites(source);
     } else {
-      removeFavorites(data);
+      removeFavorites(source);
     }
   };
   useEffect(() => {
@@ -35,5 +35,5 @@ export default function useFavorites(user) {
     }
   }, [user]);
 
-  return { favoritesList, setFavoritesList, favorIt };
+  return { favoritesList, setFavoritesList, removeFavorites, favorIt };
 }
