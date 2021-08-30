@@ -4,7 +4,6 @@ import FilterTab from "./FilterTab";
 import FavItem from "./FavItem";
 import { useFav } from "../../../hooks/providers/Favorites";
 import { filterMedia } from "../../../helpers";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 const tabs = {
   media_type: ["movie", "TV", "all"],
@@ -41,24 +40,16 @@ export default function Favorites() {
         </div>
       </div>
 
-      {/* <div className="favorite-list-grid"> */}
-      <TransitionGroup component="div" className="favorite-list-grid">
-        {filterMedia(favoritesList, filters).map((source, index) => (
-          <CSSTransition
-            key={index}
-            classNames="example"
-            timeout={{ exit: 300 }}
-          >
-            <FavItem
-              // key={index}
-              source={source}
-              removeFavorites={removeFavorites}
-            />
-          </CSSTransition>
+      <div className="favorite-list-grid">
+        {filterMedia(favoritesList, filters).map((source) => (
+          <FavItem
+            key={source.id}
+            source={source}
+            removeFavorites={removeFavorites}
+          />
         ))}
         <HiddenBox />
-      </TransitionGroup>
-      {/* </div> */}
+      </div>
     </div>
   );
 }
