@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import "./Favorites.css";
-import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
-import { useFav } from "../../../hooks/providers/Favorites";
+import "../../../styles/favorites.css";
 import FilterTab from "./FilterTab";
+import FavItem from "./FavItem";
+import { useFav } from "../../../hooks/providers/Favorites";
 import { filterMedia } from "../../../helpers";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 const tabs = {
   media_type: ["movie", "TV", "all"],
@@ -40,34 +41,24 @@ export default function Favorites() {
         </div>
       </div>
 
-      <div className="favorite-list-grid">
-        {filterMedia(favoritesList, filters).map((source) => (
-          <div className="favorite-item-container" key={source.id}>
-            <div className="favorite-img-box">
-              <img
-                src={`https://image.tmdb.org/t/p/w500${source.poster_path}`}
-                alt=""
-                className="favorite-img"
-              />
-              <button
-                className="favorite-icon-btn"
-                onClick={() => removeFavorites(source)}
-              >
-                <RemoveCircleIcon className="remove-icon" />
-              </button>
-            </div>
-            <div className="favorite-item-title-box">
-              <p className="favorite-item-title">
-                {source.title || source.name}
-              </p>
-              <p className="favorite-item-release">
-                {source.release_date || source.first_air_date}
-              </p>
-            </div>
-          </div>
+      {/* <div className="favorite-list-grid"> */}
+      <TransitionGroup component="div" className="favorite-list-grid">
+        {filterMedia(favoritesList, filters).map((source, index) => (
+          <CSSTransition
+            key={index}
+            classNames="example"
+            timeout={{ exit: 300 }}
+          >
+            <FavItem
+              // key={index}
+              source={source}
+              removeFavorites={removeFavorites}
+            />
+          </CSSTransition>
         ))}
         <HiddenBox />
-      </div>
+      </TransitionGroup>
+      {/* </div> */}
     </div>
   );
 }
