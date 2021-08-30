@@ -6,6 +6,7 @@ import Search from "./Search";
 import IconButtonList from "./IconButtonList";
 import { useAuth } from "../../hooks/providers/Auth";
 import { getUsername } from "../../helpers";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
   container: {
@@ -15,6 +16,11 @@ const useStyles = makeStyles({
   },
   logo: {
     flex: 2,
+    display: "flex",
+    alignItems: "center",
+    "&:hover": {
+      cursor: "pointer",
+    },
   },
   right: {
     flex: 8,
@@ -24,20 +30,13 @@ const useStyles = makeStyles({
 export default function BarContent() {
   const classes = useStyles();
   const { user } = useAuth().authState;
-  const url = user ? getUsername(user.email) : "/";
+  const url = user ? `/${getUsername(user.email)}` : "/";
+  const history = useHistory();
   return (
     <Toolbar className={classes.container}>
-      <Grid
-        container
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-        wrap="nowrap"
-      >
-        <div className={classes.logo}>
-          <a href={url}>
-            <img src={logo} alt="logo" />
-          </a>
+      <Grid container direction="row" justifyContent="center" wrap="nowrap">
+        <div className={classes.logo} onClick={() => history.push(url)}>
+          <img src={logo} alt="logo" />
         </div>
 
         <Grid

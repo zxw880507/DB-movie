@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
   button: {
+    alignSelf: "center",
     margin: "0 1.5em",
     color: "#fff",
     borderColor: "#fff",
@@ -38,13 +39,11 @@ const useStyles = makeStyles({
     textAlign: "center",
     padding: "1em 2em",
     cursor: "pointer",
-    textDecoration: "none",
     backgroundColor: "rgba(13, 37, 63, .9)",
     border: "none",
     "&:hover": {
       opacity: 1,
-      color: "#fff",
-      backgroundColor: "rgba(255,255,255, .1)",
+      backgroundColor: "rgba(255,255,255, .5)",
     },
   },
 });
@@ -83,9 +82,15 @@ export default function UserMenu(props) {
       </Button>
       {show && (
         <div className={classes.menuContainer}>
-          <a className={classes.menuItem} href={`${props.url}/favorites`}>
+          <button
+            className={classes.menuItem}
+            onClick={() => {
+              history.push(`${props.url}/favorites`);
+              setShow(false);
+            }}
+          >
             My favorates
-          </a>
+          </button>
           <button
             className={classes.menuItem}
             onClick={() => {
