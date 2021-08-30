@@ -132,6 +132,21 @@
                 border-radius: 1em;
                 overflow: hidden;
                 box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+                &.item-removed {
+                    animation-name: itemExit;
+                    animation-duration: 500ms;
+                }
+                @keyframes itemExit {
+                    from {
+                        transform: scale(1) rotate(0);
+                    }
+                    60% {
+                        transform: scale(1.5) rotate(0);
+                    }
+                    to {
+                        transform: scale(0) rotate(360deg);
+                    }
+                }
                 .favorite-img {
                     width: 10em;
                     height: 15em;
@@ -171,13 +186,4 @@
             }
         }
     }
-}
-
-.example-exit {
-    opacity: 1;
-}
-
-.example-exit-active {
-    opacity: 0.01;
-    transition: opacity 300ms ease-in;
 }
