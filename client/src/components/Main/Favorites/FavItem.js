@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
+import classNames from "classnames";
 
 export default function FavItem(props) {
   const { source, removeFavorites } = props;
-
+  const [isRemoved, setIsRemoved] = useState(false);
+  const imgClass = classNames("favorite-img-box", {
+    "item-removed": isRemoved,
+  });
   return (
     <div className="favorite-item-container">
-      <div className="favorite-img-box">
+      <div className={imgClass}>
         <img
           src={`https://image.tmdb.org/t/p/w500${source.poster_path}`}
           alt=""
@@ -14,7 +18,10 @@ export default function FavItem(props) {
         />
         <button
           className="favorite-icon-btn"
-          onClick={() => removeFavorites(source)}
+          onClick={() => {
+            setIsRemoved(true);
+            setTimeout(() => removeFavorites(source), 500);
+          }}
         >
           <RemoveCircleIcon className="remove-icon" />
         </button>
