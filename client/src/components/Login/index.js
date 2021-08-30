@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import HighlightOffOutlinedIcon from "@material-ui/icons/HighlightOffOutlined";
 import { IconButton, makeStyles } from "@material-ui/core";
 import LoginForm from "./LoginForm";
-import "./login.css";
+import "../../styles/login.css";
 import RegisterForm from "./RegisterForm";
 import classNames from "classnames";
 import { useAuth } from "../../hooks/providers/Auth";

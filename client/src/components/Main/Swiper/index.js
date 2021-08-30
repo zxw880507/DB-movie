@@ -4,7 +4,7 @@ import SwiperItem from "./SwiperItem";
 import useSwiper from "../../../hooks/useSwiper";
 import useScroller from "../../../hooks/useScroller";
 
-import "./Swiper.css";
+import "../../../styles/swiper.css";
 
 export default function Swiper(props) {
   const { tab } = props;
