@@ -20,7 +20,7 @@ export default function FavItem(props) {
           className="favorite-icon-btn"
           onClick={() => {
             setIsRemoved(true);
-            setTimeout(() => removeFavorites(source), 500);
+            setTimeout(() => removeFavorites(source), 800);
           }}
         >
           <RemoveCircleIcon className="remove-icon" />

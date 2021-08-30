@@ -134,7 +134,8 @@
                 box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
                 &.item-removed {
                     animation-name: itemExit;
-                    animation-duration: 500ms;
+                    animation-duration: 1000ms;
+                    animation-direction: normal;
                 }
                 @keyframes itemExit {
                     from {
@@ -144,7 +145,7 @@
                         transform: scale(1.5) rotate(0);
                     }
                     to {
-                        transform: scale(0) rotate(360deg);
+                        transform: scale(0) rotate(540deg);
                     }
                 }
                 .favorite-img {
