@@ -10,7 +10,6 @@ import BarContent from "./BarContent";
 
 const useStyles = makeStyles({
   container: {
-    alignItems: "center",
     backgroundColor: "rgba(13, 37, 63)",
   },
 });

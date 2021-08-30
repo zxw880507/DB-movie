@@ -5,6 +5,7 @@ import { makeStyles, alpha } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   search: {
+    alignSelf: "center",
     position: "relative",
     borderRadius: theme.shape.borderRadius,
     backgroundColor: alpha(theme.palette.common.white, 0.15),
