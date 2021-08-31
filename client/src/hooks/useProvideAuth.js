@@ -26,7 +26,6 @@ export default function useProvideAuth() {
 
   const userLogin = (data) => {
     setAuthState({ isAuth: true, user: data });
-
     toggleLoginWindow();
   };
 
