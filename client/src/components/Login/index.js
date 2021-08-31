@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import HighlightOffOutlinedIcon from "@material-ui/icons/HighlightOffOutlined";
 import { IconButton, makeStyles } from "@material-ui/core";
+import { CSSTransition } from "react-transition-group";
 import LoginForm from "./LoginForm";
 import "../../styles/login.css";
 import RegisterForm from "./RegisterForm";
@@ -32,7 +33,12 @@ export default function Login() {
   };
 
   return (
-    showLogin && (
+    <CSSTransition
+      in={showLogin}
+      timeout={500}
+      classNames="my-login"
+      unmountOnExit
+    >
       <div className="login-window">
         <div className="login-container">
           <IconButton className={classes.button} onClick={toggleLoginWindow}>
@@ -57,6 +63,6 @@ export default function Login() {
           </div>
         </div>
       </div>
-    )
+    </CSSTransition>
   );
 }
