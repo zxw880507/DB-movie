@@ -20,6 +20,8 @@ const useStyles = makeStyles({
     position: "absolute",
     top: "120%",
     left: "50%",
+    height: 0,
+    overflow: "hidden",
     transform: "translateX(-50%)",
     display: "flex",
     flexDirection: "column",
@@ -27,8 +29,18 @@ const useStyles = makeStyles({
     alignItems: "center",
     backgroundColor: "rgba(13, 37, 63, .1)",
     whiteSpace: "nowrap",
+  },
+  menuContainerShow: {
+    opacity: 1,
+    height: "8em",
     boxShadow:
       "inset 1px 1px 2em rgba(0,0,0,1), 0px 0px 0 2px rgba(255,255,255,.2)",
+    transition: "all .5s ease-in-out",
+  },
+  menuContainerHidden: {
+    opacity: 0,
+    height: 0,
+    transition: "all .5s ease-in-out",
   },
   menuItem: {
     width: "100%",
@@ -80,28 +92,31 @@ export default function UserMenu(props) {
       >
         {authState.user.email}
       </Button>
-      {show && (
-        <div className={classes.menuContainer}>
-          <button
-            className={classes.menuItem}
-            onClick={() => {
-              history.push(`${props.url}/favorites`);
-              setShow(false);
-            }}
-          >
-            My favorates
-          </button>
-          <button
-            className={classes.menuItem}
-            onClick={() => {
-              handleClick();
-              userLogout().then(() => history.push("/"));
-            }}
-          >
-            Log out
-          </button>
-        </div>
-      )}
+
+      <div
+        className={`${classes.menuContainer} ${
+          show ? classes.menuContainerShow : classes.menuContainerHidden
+        }`}
+      >
+        <button
+          className={classes.menuItem}
+          onClick={() => {
+            history.push(`${props.url}/favorites`);
+            setShow(false);
+          }}
+        >
+          My favorates
+        </button>
+        <button
+          className={classes.menuItem}
+          onClick={() => {
+            handleClick();
+            userLogout().then(() => history.push("/"));
+          }}
+        >
+          Log out
+        </button>
+      </div>
     </div>
   );
 }
