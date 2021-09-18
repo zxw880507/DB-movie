@@ -4,6 +4,12 @@ const cache = require("../cache");
 const Medium = require("../db/models/medium");
 
 module.exports = (api_key, helpers) => {
+  router.get("/search", (request, response) => {
+    const { keywords, page } = request.query;
+    const url = `
+    https://api.themoviedb.org/3/search/multi?api_key=${api_key}&language=en-US&query=${keywords}&page=${page}&include_adult=true`;
+    axios.get(url).then((res) => response.json(res.data));
+  });
   router.get("/trending/:type/:time_window", (request, response) => {
     const { type, time_window } = request.params;
     const cacheKey = helpers.generateCacheKey({
