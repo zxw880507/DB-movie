@@ -10,7 +10,7 @@ export default function useSwiper(tab) {
     setSelectTag(tag);
   };
   useEffect(() => {
-    console.log("effect ----------------------");
+   
     const { type, keyword, sortByType, tags } = tab;
     const promiseArr = tags.map((tag) => {
       const url = sortByType ? `${tag}/${keyword}` : `${type}/${tag}`;

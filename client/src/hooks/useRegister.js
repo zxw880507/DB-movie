@@ -49,7 +49,7 @@ export default function useRegister(props) {
     e.preventDefault();
     checkIsWarning();
     if (Object.keys(isWarning).every((key) => isWarning[key] === false)) {
-      console.log("submit successfully");
+      
       axios
         .post("/user/register", input)
         .then((res) => {
