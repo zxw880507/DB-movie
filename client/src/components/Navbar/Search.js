@@ -4,7 +4,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import { makeStyles, alpha } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setKeywords, fetchResult } from "../../actions";
+import { setKeywords, resetKeywords } from "../../actions";
 
 const useStyles = makeStyles((theme) => ({
   search: {
@@ -59,16 +59,15 @@ export default function Search(props) {
   const setInput = (e) => {
     dispatch(setKeywords(e.target.value));
   };
+  const searchOnSubmit = (e) => {
+    e.preventDefault();
+    history.push(`${url}/search?keywords=${searchKeywords}&page=1`);
+    dispatch(resetKeywords());
+  };
 
   return (
     <div className={classes.search}>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          history.push(`${url}/search?keywords=${searchKeywords}&page=1`);
-          dispatch(fetchResult(1));
-        }}
-      >
+      <form onSubmit={searchOnSubmit}>
         <div className={classes.searchIcon}>
           <SearchIcon />
         </div>
