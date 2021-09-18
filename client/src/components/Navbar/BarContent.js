@@ -30,16 +30,26 @@ const useStyles = makeStyles({
 export default function BarContent() {
   const classes = useStyles();
   const { user } = useAuth().authState;
-  const url = user ? `/${getUsername(user.email)}` : "/";
+  const url = user ? `/${getUsername(user.email)}` : "";
   const history = useHistory();
   return (
     <Toolbar className={classes.container}>
-      <Grid container direction="row" justifyContent="center" wrap="nowrap">
-        <div className={classes.logo} onClick={() => history.push(url)}>
-          <img src={logo} alt="logo" />
-        </div>
+      <Grid
+        container
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+        wrap="nowrap"
+      >
+        <Grid item xs={2}>
+          <div className={classes.logo} onClick={() => history.push(url)}>
+            <img src={logo} alt="logo" />
+          </div>
+        </Grid>
 
         <Grid
+          item
+          xs={10}
           container
           direction="row"
           justifyContent="space-between"
@@ -47,7 +57,7 @@ export default function BarContent() {
           wrap="nowrap"
           className={classes.right}
         >
-          <Search />
+          <Search url={url} />
           <IconButtonList url={url} />
         </Grid>
       </Grid>
