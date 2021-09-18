@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Grid, IconButton, makeStyles } from "@material-ui/core";
+import { Button, Grid, IconButton, makeStyles, Link } from "@material-ui/core";
 import { GitHub, LinkedIn, AccountCircle } from "@material-ui/icons";
 import UserMenu from "./Menu";
 import { useAuth } from "../../hooks/providers/Auth";
@@ -27,12 +27,19 @@ export default function IconButtonList(props) {
       alignItems="center"
       wrap="nowrap"
     >
-      <IconButton aria-label="github" className={classes.button}>
-        <GitHub fontSize="large" />
-      </IconButton>
-      <IconButton aria-label="linkedin" className={classes.button}>
-        <LinkedIn fontSize="large" />
-      </IconButton>
+      <Link href="https://github.com/zxw880507" target="_blank">
+        <IconButton aria-label="github" className={classes.button}>
+          <GitHub fontSize="large" />
+        </IconButton>
+      </Link>
+      <Link
+        href="https://www.linkedin.com/in/calvin-zheng-zxw880507/"
+        target="_blank"
+      >
+        <IconButton aria-label="linkedin" className={classes.button}>
+          <LinkedIn fontSize="large" />
+        </IconButton>
+      </Link>
       {authState.isAuth ? (
         <UserMenu {...props} />
       ) : (
