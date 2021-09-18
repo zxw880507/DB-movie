@@ -2,6 +2,9 @@ import React from "react";
 import { InputBase } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import { makeStyles, alpha } from "@material-ui/core/styles";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setKeywords, fetchResult } from "../../actions";
 
 const useStyles = makeStyles((theme) => ({
   search: {
@@ -46,11 +49,26 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-export default function Search() {
+export default function Search(props) {
+  const { url } = props;
   const classes = useStyles();
+  const history = useHistory();
+  const searchKeywords = useSelector((state) => state.searchKeywords);
+
+  const dispatch = useDispatch();
+  const setInput = (e) => {
+    dispatch(setKeywords(e.target.value));
+  };
+
   return (
     <div className={classes.search}>
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          history.push(`${url}/search?keywords=${searchKeywords}&page=1`);
+          dispatch(fetchResult(1));
+        }}
+      >
         <div className={classes.searchIcon}>
           <SearchIcon />
         </div>
@@ -61,6 +79,8 @@ export default function Search() {
             input: classes.inputInput,
           }}
           inputProps={{ "aria-label": "search" }}
+          value={searchKeywords}
+          onChange={setInput}
         />
       </form>
     </div>
