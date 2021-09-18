@@ -33,7 +33,7 @@ function CustomRoute({ children, ...rest }) {
   const path =
     location.pathname === "/" && isAuth
       ? `/${getUsername(user.email)}`
-      : location.pathname;
+      : location.pathname + location.search;
 
   return <Route {...rest}>{isAuth ? <Redirect to={path} /> : children}</Route>;
 }
