@@ -3,6 +3,7 @@ import { Container, makeStyles, Toolbar } from "@material-ui/core";
 import Header from "./Header";
 import SwiperList from "./SwiperList";
 import Favorites from "./Favorites";
+import SearchResults from "./SearchResults";
 import { ProvideFavorites } from "../../hooks/providers/Favorites";
 import { useAuth } from "../../hooks/providers/Auth";
 import { Switch, Route, useLocation } from "react-router-dom";
@@ -39,6 +40,9 @@ export default function Main() {
           <Route exact path={authPath}>
             <Header />
             <SwiperList />
+          </Route>
+          <Route path={[`${authPath}/search`, "/search"]}>
+            <SearchResults />
           </Route>
           {authState.isAuth && (
             <Route exact path={`${authPath}/favorites`}>
