@@ -7,7 +7,7 @@ module.exports = (api_key, helpers) => {
   router.get("/search", (request, response) => {
     const { keywords, page } = request.query;
     const url = `
-    https://api.themoviedb.org/3/search/multi?api_key=${api_key}&language=en-US&query=${keywords}&page=${page}&include_adult=true`;
+    https://api.themoviedb.org/3/search/multi?api_key=${api_key}&language=en-US&query=${keywords}&page=${page}&include_adult=false`;
     axios.get(url).then((res) => response.json(res.data));
   });
   router.get("/trending/:type/:time_window", (request, response) => {
