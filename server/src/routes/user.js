@@ -9,6 +9,7 @@ router.post("/register", (req, res) => {
     .then((user) => {
       console.log("user registered!!!!");
       req.session.email = user.email;
+
       res.json({ email: user.email });
     })
     .catch((err) => {
@@ -19,7 +20,7 @@ router.post("/register", (req, res) => {
 
 router.get("/login", (req, res) => {
   const email = req.session.email;
-  console.log(email);
+
   if (!email) {
     res.send(null);
     return;
@@ -54,6 +55,7 @@ router.post("/login", (req, res) => {
         res.status(400).send({ password: "Password didn't match. Try again." });
       } else {
         req.session.email = user.email;
+
         res.json({ userId: user.id, email: user.email });
       }
     })

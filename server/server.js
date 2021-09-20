@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 require("dotenv").config();
+
 const cookieSession = require("cookie-session");
 const port = process.env.PORT || 8000;
 require("./src/db");
@@ -10,7 +11,6 @@ require("./src/db");
 const { json, urlencoded } = express;
 const { join } = require("path");
 
-app.set("trust proxy", 1);
 app.use(
   cookieSession({
     name: "session",
