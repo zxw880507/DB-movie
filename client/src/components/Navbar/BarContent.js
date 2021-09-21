@@ -43,7 +43,7 @@ export default function BarContent() {
       >
         <Grid item xs={2}>
           <div className={classes.logo} onClick={() => history.push(url)}>
-            <img src={logo} alt="logo" />
+            <img src={logo} alt="logo" style={{ width: "100%" }} />
           </div>
         </Grid>
 
