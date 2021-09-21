@@ -7,7 +7,7 @@ const seeds = require("./seeds");
 db.authenticate()
   .then(() => {
     console.log("Connection has been established successfully.");
-    db.sync({ force: true }).then(() => {
+    db.sync({ force: !process.env.STAGING === "production" }).then(() => {
       console.log("db synced!!!");
       seeds();
     });
