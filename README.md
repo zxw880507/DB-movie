@@ -4,6 +4,15 @@ DB-MOVIE is an single page app for Movie/TV browsing and help users to discover 
 
 The front-end has been deployed to Netlify and the live site can be found [here](https://dbmovie-zxw.netlify.app/). The back-end is being hosted by Heroku.
 
+Welcome to register for exploring the webapp features or there are 5 existing users for test:
+| Email | Password |
+| :------: | :------: |
+| `test1@db.com` | `test` |
+| `test2@db.com` | `test` |
+| `test3@db.com` | `test` |
+| `test4@db.com` | `test` |
+| `test5@db.com` | `test` |
+
 ### Front end
 
 - [x] react-app
