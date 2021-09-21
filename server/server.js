@@ -3,7 +3,8 @@ const app = express();
 const cors = require("cors");
 require("dotenv").config();
 
-const cookieSession = require("cookie-session");
+// const cookieSession = require("cookie-session");
+
 const port = process.env.PORT || 8000;
 require("./src/db");
 
@@ -11,14 +12,15 @@ require("./src/db");
 const { json, urlencoded } = express;
 const { join } = require("path");
 
-app.use(
-  cookieSession({
-    name: "session",
-    keys: ["key1", "key2"],
-  })
-);
-
 app.use(cors());
+
+// app.use(
+//   cookieSession({
+//     name: "session",
+//     keys: ["key1", "key2"],
+//   })
+// );
+
 app.use(json());
 
 app.use(urlencoded({ extended: false }));
