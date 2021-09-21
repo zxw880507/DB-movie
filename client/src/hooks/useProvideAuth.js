@@ -9,7 +9,8 @@ export default function useProvideAuth() {
   });
 
   useEffect(() => {
-    axios.get("/user/login").then((res) => {
+    const accessToken = localStorage.getItem("token");
+    axios.get("/user/login", { params: { accessToken } }).then((res) => {
       if (res.data.email) {
         setAuthState({ isAuth: true, user: res.data });
       }
@@ -26,12 +27,14 @@ export default function useProvideAuth() {
 
   const userLogin = (data) => {
     setAuthState({ isAuth: true, user: data });
+    localStorage.setItem("token", data.accessToken);
     toggleLoginWindow();
   };
 
   const userLogout = () => {
     return axios.post("/user/logout").then(() => {
       setAuthState({ isAuth: false, user: null });
+      localStorage.removeItem("token");
     });
   };
 
