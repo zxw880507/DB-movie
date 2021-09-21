@@ -64,9 +64,10 @@ function NoMatch() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       setLoading(false);
     }, 300);
+    return clearTimeout(timeout);
   }, []);
   return (
     !loading && (
