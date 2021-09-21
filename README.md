@@ -1,17 +1,23 @@
 # DB-MOVIE
 
-DB-MOVIE is an single page app for Movie/TV browsing and help users to discover their next show by reliable stats.
+DB-MOVIE is an single page app for Movie/TV browsing and help users to discover their next show by reliable stats. Registered users could favor some media and personal favorite movies and TV shows list can be modified upon favorite tab. Guests and users both are accessible to search media by keywords, but only users have favorites settings.
+
+The front-end has been deployed to Netlify and the live site can be found [here](https://dbmovie-zxw.netlify.app/). The back-end is being hosted by Heroku.
 
 ### Front end
 
 - [x] react-app
+- [x] react-router-dom
+- [x] react-redux & thunk
 - [x] bootstrip, material-UI
 
 ### Back end
 
 - [x] Express
+- [x] Sequelize ORM
 - [x] node-cache
 - [x] axios
+- [x] JWT auth
 
 The back-end repo was built using Node.js and Express with third party(TMDB) API integration. Also the API request performance is optimized by caching for storing and retrieving response data.
 &nbsp;
@@ -19,22 +25,43 @@ The back-end repo was built using Node.js and Express with third party(TMDB) API
 
 ## Screen Shot
 
-#### Home page part1
+#### Home page Static
 
 !["Home"](client/docs/screenshot_home_page_1.png)
 
-#### Home page part2
+#### Home page Browsing
 
-!["Home"](client/docs/screenshot_home_page_2.png)
+!["Home Browsing"](client/docs/browsing.gif)
 
-## Dependencies
+#### User Login
+
+!["User Login"](client/docs/login.gif)
+
+#### Add Media as Favorites
+
+!["Add Fav"](client/docs/add_favorite.gif)
+
+#### Manage Favorites
+
+!["Manage Fav"](client/docs/manage_favorites.gif)
+
+#### Media Search
+
+!["Media Search"](client/docs/media_search.gif)
+
+## Major Dependencies
 
 - React.js
-- Node.js
-- Express
 - Material-UI
 - bootstrap
+- react-redux && thunk
+- react-router-dom
+- Node.js
+- Express
+- sequelize
 - node-cache
+- jsonwebtoken
+- bcryptjs
 
 ## Available Scripts
 
@@ -55,8 +82,9 @@ In the Back-end directory (DB-MOVIE/server), you can run:
 Runs the server in the development mode.
 Call (http://localhost:8000) followed by listed routes to fetch data in the browser.
 
-|        Routes         | Method |            params            | Response body               |
-| :-------------------: | :----: | :--------------------------: | --------------------------- |
-|       /api/ping       |  get   |             N/A              | success message             |
-| /api/movie/`<params>` |  get   |  popular/top_rated/upcoming  | sorted data / error message |
-|  /api/tv/`<params>`   |  get   | popular/top_rated/on_the_air | sorted data / error message |
+|                    Routes                     | Method |                    params                     | Response body               |
+| :-------------------------------------------: | :----: | :-------------------------------------------: | --------------------------- |
+|                   /api/ping                   |  get   |                      N/A                      | success message             |
+|             /api/movie/`<params>`             |  get   |          popular/top_rated/upcoming           | sorted data / error message |
+|              /api/tv/`<params>`               |  get   |         popular/top_rated/on_the_air          | sorted data / error message |
+| /api/search?keywords=`<params>`&page=`<page>` |  get   | `params` as in `any` && `page` as in `number` | sorted data / error message |
