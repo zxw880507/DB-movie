@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const jwt = require("jsonwebtoken");
 const User = require("../db/models/user");
 const Medium = require("../db/models/medium");
 const Favorite = require("../db/models/favorite");
@@ -8,9 +9,12 @@ router.post("/register", (req, res) => {
   User.create({ email, password })
     .then((user) => {
       console.log("user registered!!!!");
-      req.session.email = user.email;
-
-      res.json({ email: user.email });
+      // req.session.email = user.email;
+      const accessToken = jwt.sign(
+        { userId: user.id, email: user.email },
+        process.env.accessTokenSecret
+      );
+      res.json({ userId: user.id, email: user.email, accessToken });
     })
     .catch((err) => {
       console.log(err.errors[0].message);
@@ -19,26 +23,46 @@ router.post("/register", (req, res) => {
 });
 
 router.get("/login", (req, res) => {
-  const email = req.session.email;
-
-  if (!email) {
-    res.send(null);
-    return;
-  }
-  User.findOne({
-    where: {
-      email,
-    },
-  })
-    .then((user) => {
-      if (!user) {
-        res.send(null);
-      }
-      res.json({ userId: user.id, email: user.email });
-    })
-    .catch((err) => {
-      throw err;
-    });
+  // const email = req.session.email;
+  const { accessToken } = req.query;
+  jwt.verify(accessToken, process.env.accessTokenSecret, (err, decoded) => {
+    if (err) {
+      res.send(null);
+    } else {
+      User.findOne({
+        where: {
+          email: decoded.email,
+        },
+      })
+        .then((user) => {
+          if (!user) {
+            res.send(null);
+          }
+          res.json({ userId: user.id, email: user.email });
+        })
+        .catch((err) => {
+          throw err;
+        });
+    }
+  });
+  // if (!email) {
+  //   res.send(null);
+  //   return;
+  // }
+  // User.findOne({
+  //   where: {
+  //     email,
+  //   },
+  // })
+  //   .then((user) => {
+  //     if (!user) {
+  //       res.send(null);
+  //     }
+  //     res.json({ userId: user.id, email: user.email });
+  //   })
+  //   .catch((err) => {
+  //     throw err;
+  //   });
 });
 
 router.post("/login", (req, res) => {
@@ -54,9 +78,13 @@ router.post("/login", (req, res) => {
       } else if (!user.comparePassword(password)) {
         res.status(400).send({ password: "Password didn't match. Try again." });
       } else {
-        req.session.email = user.email;
+        // req.session.email = user.email;
+        const accessToken = jwt.sign(
+          { userId: user.id, email: user.email },
+          process.env.accessTokenSecret
+        );
 
-        res.json({ userId: user.id, email: user.email });
+        res.json({ userId: user.id, email: user.email, accessToken });
       }
     })
     .catch((err) => {
