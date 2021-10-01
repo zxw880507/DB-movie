@@ -1,6 +1,6 @@
 # DB-MOVIE
 
-DB-MOVIE is an single page app for Movie/TV browsing and help users to discover their next show by reliable stats. Registered users could favor some media and personal favorite movies and TV shows list can be modified upon favorite tab. Guests and users both are accessible to search media by keywords, but only users have favorites settings.
+DB-MOVIE is a single page app for Movie/TV browsing and help users to discover their next show by reliable stats. Registered users could favor some media and personal favorite movies and TV shows list can be modified upon favorite tab. Guests and users both are accessible to search media by keywords, but only users have favorites settings.
 
 The front-end has been deployed to Netlify and the live site can be found [here](https://dbmovie-zxw.netlify.app/). The back-end is being hosted by Heroku.
 
